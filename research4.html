@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 04 — 各種臓器のオメガ3系脂肪酸組成比への影響 | YOSHIKIYO Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744; --navy-dark: #111b33; --slate: #4a5568;
+  --gold: #b8965a; --gold-light: #d4a96a; --cream: #f8f6f1; --white: #ffffff;
+  --border: #d1d5db; --border-light: #e5e7eb; --text: #1f2937; --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,39,68,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(184,150,90,0.3); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+.hero { min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%); display: flex; align-items: flex-end; padding-top: 64px; }
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+.highlight-box { background: var(--cream); border-left: 3px solid var(--gold); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.5rem 0; font-size: 0.9rem; color: var(--slate); line-height: 1.9; }
+.result-list { list-style: none; margin: 1rem 0 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.result-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.88rem; color: var(--slate); line-height: 1.8; }
+.result-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.figure-mock { height: 220px; background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; position: relative; }
+.figure-mock::before { content: ''; width: 60px; height: 60px; border: 2px dashed rgba(44,74,138,0.3); border-radius: 50%; }
+.figure-mock-icon { position: absolute; font-size: 2rem; opacity: 0.3; }
+.figure-num { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.25s; margin-top: 2rem; }
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+footer { background: var(--navy-dark); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YOSHIKIYO Lab <span>島根大学 生命物理化学研究室</span></a>
+    <a href="index.html#research" class="nav-back">← 研究テーマ一覧</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 04 / Research</div>
+    <h1>エゴマ油の摂取による各種臓器のオメガ3系脂肪酸組成比への影響<em>Effect on Organ Fatty Acid Composition</em></h1>
+  </div>
+</div>
+<div class="content">
+  <div class="section">
+    <h2><span></span>研究の背景</h2>
+    <p>エゴマ油をγ-シクロデキストリン（γ-CD）で包接して摂取することで、植物由来のオメガ3系脂肪酸であるα-リノレン酸の血中への吸収が大きく改善されることを明らかにしてきました。本研究では、この吸収率の向上が<strong>血液中だけでなくさまざまな臓器の脂肪酸組成</strong>にどのような影響を与えるかを詳しく解析しています。</p>
+  </div>
+  <div class="section">
+    <h2><span></span>各臓器における脂肪酸組成の変化</h2>
+    <p>マウスを用いた実験において、γ-CD包接錯体としてエゴマ油を摂取した群では、血漿だけでなく複数の臓器でポジティブな変化が確認されました。</p>
+    <ul class="result-list">
+      <li><strong>肝臓</strong>：α-リノレン酸およびEPAの組成比が増加し、脂質代謝の改善が示唆されました。</li>
+      <li><strong>赤血球膜</strong>：EPA含量が上昇し、血液レベルでの脂質の質的向上が確認されました。</li>
+      <li><strong>白色脂肪組織</strong>：α-リノレン酸の上昇傾向が見られ、長期的な組織の質的改善につながる可能性が見出されました。</li>
+    </ul>
+    <p>これらの変化は、エゴマ油単独・γ-CD単独の摂取では観察されず、<strong>エゴマ油とγ-CDを一緒に摂取すること</strong>が全身の脂肪酸組成を変化させる鍵であることが示されています。</p>
+  </div>
+  <div class="section">
+    <h2><span></span>図・データ</h2>
+    <div class="figures">
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">🫀</div>
+          <div class="figure-num">Fig. 10</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 10</strong> — 肝臓の脂肪酸組成の比較。γ-CD包接体摂取群では、α-リノレン酸・EPAの組成比が他群と比較して増加し、オメガ3/オメガ6バランスの改善が示された。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">🩸</div>
+          <div class="figure-num">Fig. 11</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 11</strong> — 赤血球膜の脂肪酸組成の比較。γ-CD包接体摂取群でEPA含量が上昇し、血液レベルでのオメガ3系脂肪酸の質的改善が確認された。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">📊</div>
+          <div class="figure-num">Fig. 12</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 12</strong> — 白色脂肪組織の脂肪酸組成の比較。γ-CD包接体摂取群においてα-リノレン酸の上昇傾向が見られ、長期的な組織への影響が示唆された。</div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <h2><span></span>今後の展望</h2>
+    <p>γ-CDとエゴマ油の共摂取がなぜ全身の脂肪酸組成を変化させるのか、その詳細なメカニズム（腸管での消化・吸収過程、遺伝子発現への影響など）の解明を目指しています。食事から摂取したオメガ3系脂肪酸を効率よく全身へ届ける新たな食品機能性の創出に向け、研究を進めてまいります。</p>
+  </div>
+  <div class="section">
+    <h2><span></span>関連論文</h2>
+    <p>Yoshikiyo et al. (2025) International Journal of Molecular Sciences — <a href="https://doi.org/10.3390/ijms26167776" style="color:var(--accent)">doi:10.3390/ijms26167776</a></p>
+    <p>Yoshikiyo et al. (2025) Molecules — <a href="http://dx.doi.org/10.3390/molecules30020281" style="color:var(--accent)">doi:10.3390/molecules30020281</a></p>
+    <p>Yoshikiyo et al. (2023) Food Hydrocolloids for Health — <a href="https://doi.org/10.1016/j.fhfh.2023.100116" style="color:var(--accent)">doi:10.1016/j.fhfh.2023.100116</a></p>
+  </div>
+  <a href="index.html#research" class="back-link">← 研究テーマ一覧に戻る</a>
+</div>
+<footer>© 2025 Keisuke Yoshikiyo — Laboratory of Biophysical Chemistry, Shimane University</footer>
+</body>
+</html>

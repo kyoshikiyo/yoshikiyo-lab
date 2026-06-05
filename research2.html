@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 02 — エゴマ油の粉末化と熱安定性 | YOSHIKIYO Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744; --navy-dark: #111b33; --slate: #4a5568; --slate-light: #718096;
+  --gold: #b8965a; --gold-light: #d4a96a; --cream: #f8f6f1; --white: #ffffff;
+  --border: #d1d5db; --border-light: #e5e7eb; --text: #1f2937; --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,39,68,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(184,150,90,0.3); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+.hero { min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%); display: flex; align-items: flex-end; padding-top: 64px; }
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.figure-mock { height: 220px; background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; position: relative; }
+.figure-mock::before { content: ''; width: 60px; height: 60px; border: 2px dashed rgba(44,74,138,0.3); border-radius: 50%; }
+.figure-mock-icon { position: absolute; font-size: 2rem; opacity: 0.3; }
+.figure-num { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.25s; margin-top: 2rem; }
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+footer { background: var(--navy-dark); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YOSHIKIYO Lab <span>島根大学 生命物理化学研究室</span></a>
+    <a href="index.html#research" class="nav-back">← 研究テーマ一覧</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 02 / Research</div>
+    <h1>エゴマ油の粉末化と熱安定性<em>Encapsulation &amp; Thermal Stability of Perilla Oil</em></h1>
+  </div>
+</div>
+<div class="content">
+  <div class="section">
+    <h2><span></span>エゴマ油とトリグリセリドの多様性</h2>
+    <p>一年草のエゴマの種子から搾油されるエゴマ油は、オメガ3系脂肪酸の一種である<strong>α-リノレン酸を50〜60％</strong>という高い割合で含むため、ヘルシーオイルとして注目されています。しかし、α-リノレン酸はEPA・DHAと同様に<strong>熱に弱く、酸化されやすい</strong>という欠点を持っています。</p>
+    <p>エゴマ油の主成分はトリグリセリドです。1つのグリセロール骨格に3つの脂肪酸がエステル結合した分子で、主要な5種類の脂肪酸（パルミチン酸・ステアリン酸・オレイン酸・リノール酸・α-リノレン酸）の組み合わせと結合位置（sn-1・sn-2・sn-3位）により、膨大な種類のトリグリセリドが存在します。5種類の脂肪酸だけで数学的に125通りのパターンがあり、私たちが「エゴマ油」と呼ぶ液体の中には、これほどまでに多様な分子が含まれています。</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>γ-CDによる包接と粉末化</h2>
+    <p>シクロデキストリンはこれまでの研究で、遊離脂肪酸（エステル結合していない状態の脂肪酸）と包接錯体を形成し、その脂肪酸を酸化から守る分子カプセルとして機能することが知られていました。</p>
+    <p>私たちは8個のグルコースからなる<strong>γ-シクロデキストリン（γ-CD）</strong>とエゴマ油との包接錯体を調製しました。その結果、比較的熱安定性の高い包接錯体が<strong>固体（粉末）として回収</strong>できることが分かりました。これによりエゴマ油の粉末化が可能になり、酸化を抑え、顆粒・錠剤・粉末食品など食品として大幅に扱いやすくなります。</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>図・データ</h2>
+    <div class="figures">
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">🌿</div>
+          <div class="figure-num">Fig. 4</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 4</strong> — エゴマ油のトリグリセリドの模式図。1つのグリセロール骨格のsn-1・sn-2・sn-3位に3つのα-リノレン酸がエステル結合した例。実際には5種類の脂肪酸の組み合わせで膨大な種類が存在する。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">🧪</div>
+          <div class="figure-num">Fig. 5</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 5</strong> — γ-CDとエゴマ油から調製した包接錯体の粉末。液体のエゴマ油が白色粉末として得られ、取り扱いが大幅に改善される。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">📈</div>
+          <div class="figure-num">Fig. 6</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 6</strong> — 熱重量分析（TGA）による熱安定性の比較。遊離エゴマ油と比較して、γ-CD包接錯体では加熱による重量減少が抑制されることを示す。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>関連論文</h2>
+    <p>Yoshikiyo et al. (2019) Food Chemistry — <a href="http://dx.doi.org/10.1016/j.foodchem.2019.04.093" style="color:var(--accent)">doi:10.1016/j.foodchem.2019.04.093</a></p>
+    <p>吉清恵介 (2020) 産学官連携ジャーナル — <a href="https://doi.org/10.1241/sangakukanjournal.16.11_4" style="color:var(--accent)">doi:10.1241/sangakukanjournal.16.11_4</a></p>
+    <p>吉清恵介 (2026) 表面と界面 — <a href="https://doi.org/10.4164/sptj.63.181" style="color:var(--accent)">doi:10.4164/sptj.63.181</a></p>
+  </div>
+  <a href="index.html#research" class="back-link">← 研究テーマ一覧に戻る</a>
+</div>
+<footer>© 2025 Keisuke Yoshikiyo — Laboratory of Biophysical Chemistry, Shimane University</footer>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 01 — シクロデキストリンの包接化学 | YOSHIKIYO Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-light: #243358;
+  --navy-dark: #111b33;
+  --slate: #4a5568;
+  --slate-light: #718096;
+  --gold: #b8965a;
+  --gold-light: #d4a96a;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --border: #d1d5db;
+  --border-light: #e5e7eb;
+  --text: #1f2937;
+  --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(26,39,68,0.97); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184,150,90,0.3);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+
+.hero {
+  min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%);
+  display: flex; align-items: flex-end; padding-top: 64px;
+}
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+
+/* Figure mock */
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--white);
+}
+.figure-mock {
+  height: 220px;
+  background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.75rem; position: relative;
+}
+.figure-mock::before {
+  content: '';
+  width: 60px; height: 60px;
+  border: 2px dashed rgba(44,74,138,0.3);
+  border-radius: 50%;
+}
+.figure-mock-icon {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.3;
+}
+.figure-num {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+.figure-caption {
+  padding: 1rem 1.25rem;
+  font-size: 0.8rem;
+  color: var(--slate);
+  line-height: 1.7;
+  border-top: 1px solid var(--border-light);
+}
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--accent); text-decoration: none; font-size: 0.85rem;
+  padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px;
+  transition: all 0.25s; margin-top: 2rem;
+}
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+
+footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">YOSHIKIYO Lab <span>島根大学 生命物理化学研究室</span></a>
+    <a href="index.html#research" class="nav-back">← 研究テーマ一覧</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 01 / Research</div>
+    <h1>シクロデキストリンの包接化学<em>Inclusion Chemistry of Cyclodextrins</em></h1>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2><span></span>シクロデキストリンとは</h2>
+    <p>シクロデキストリン（CD）は、グルコース分子が環状に連なった天然由来のオリゴ糖です。分子の中央に<strong>疎水性の空洞</strong>を持つカプセル状の構造をしており、その空洞の中にさまざまな分子やイオンを選択的に取り込みます。この現象を「<strong>包接</strong>」と呼び、できた錯体を「<strong>包接錯体</strong>」と呼びます。</p>
+    <p>シクロデキストリンには、グルコースの数によって3種類があります。6個のグルコースからなるα-CD、7個のβ-CD、8個のγ-CDで、空洞のサイズがそれぞれ異なります。比較的小さな分子に対しては分子全体を包接できますが、大きな分子に対してはその一部のみを包接することもあります。脂肪酸とシクロデキストリンとの包接錯体はその代表的な例です。</p>
+    <p>シクロデキストリンは<strong>食べられる化合物</strong>であることも大きな利点の一つです。この「食べられる分子カプセル」を利用した研究を進めています。</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>研究内容</h2>
+    <p>α・β・γシクロデキストリンとさまざまな分子との包接錯体形成について、<strong>NMR分光法</strong>や<strong>熱力学的解析</strong>を用いて研究してきました。包接錯体の構造・安定性・選択性を解析し、分子認識の機構を明らかにすることが本研究の柱です。</p>
+    <p>これまでに、有機溶媒・エチレングリコール・シクロアルカノール・ナフタレン誘導体・有機リン酸などとの包接錯体の結合定数を決定し、包接の熱力学的特性を明らかにしてきました。また、シクロデキストリン誘導体（グアニジノ基付加体・メチル化体など）の合成と、その分子認識特性についても研究しています。</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>図・データ</h2>
+    <div class="figures">
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">⬡</div>
+          <div class="figure-num">Fig. 1</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 1</strong> — α-シクロデキストリンの空洞にベンゼンが包接される様子の模式図。6個のグルコースが環状に連なり、中央の疎水性空洞にゲスト分子が取り込まれる。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">🔬</div>
+          <div class="figure-num">Fig. 2</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 2</strong> — α・β・γ-CDの空洞サイズの比較。グルコースの数が増えるにつれて空洞が大きくなり、より大きなゲスト分子を包接できる。脂肪酸のような大きな分子は一部のみが包接される。</div>
+      </div>
+      <div class="figure">
+        <div class="figure-mock">
+          <div class="figure-mock-icon">📊</div>
+          <div class="figure-num">Fig. 3</div>
+        </div>
+        <div class="figure-caption"><strong>Fig. 3</strong> — NMR分光法による包接錯体の結合定数（K）の測定例。化学シフト変化からゲスト分子の空洞内位置と錯体の安定性を定量的に評価できる。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>関連論文</h2>
+    <p>Yoshikiyo et al. (2015) Beilstein Journal of Organic Chemistry — <a href="http://dx.doi.org/10.3762/bjoc.11.168" style="color:var(--accent)">doi:10.3762/bjoc.11.168</a></p>
+    <p>Yoshikiyo et al. (2012) Bulletin of the Chemical Society of Japan — <a href="http://dx.doi.org/10.1246/bcsj.20120140" style="color:var(--accent)">doi:10.1246/bcsj.20120140</a></p>
+    <p>Akita, Yoshikiyo &amp; Yamamoto (2014) Journal of Molecular Structure — <a href="http://dx.doi.org/10.1016/j.molstruc.2014.05.051" style="color:var(--accent)">doi:10.1016/j.molstruc.2014.05.051</a></p>
+  </div>
+
+  <a href="index.html#research" class="back-link">← 研究テーマ一覧に戻る</a>
+</div>
+
+<footer>© 2025 Keisuke Yoshikiyo — Laboratory of Biophysical Chemistry, Shimane University</footer>
+</body>
+</html>
