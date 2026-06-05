@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吉清恵介 / Yoshikiyo Keisuke — 島根大学 生命物理化学研究室</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-light: #243358;
+  --navy-dark: #111b33;
+  --slate: #4a5568;
+  --slate-light: #718096;
+  --gold: #b8965a;
+  --gold-light: #d4a96a;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --border: #d1d5db;
+  --border-light: #e5e7eb;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --accent: #2c4a8a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(26, 39, 68, 0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184,150,90,0.3);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+.nav-logo span {
+  display: block;
+  font-size: 0.7rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+}
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+  font-weight: 400;
+}
+.nav-links a:hover {
+  color: var(--gold-light);
+  background: rgba(255,255,255,0.06);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, #1e3560 100%);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 70% 50%, rgba(44,74,138,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(184,150,90,0.08) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hero-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.hero-name-ja {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+.hero-title {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.9;
+  margin-bottom: 2.5rem;
+}
+.hero-title strong {
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy-dark);
+  padding: 0.75rem 1.75rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  transition: all 0.25s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.85);
+  padding: 0.75rem 1.75rem;
+  border-radius: 3px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  transition: all 0.25s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.molecule-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  max-width: 320px;
+  width: 100%;
+}
+.molecule-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+}
+.molecule-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+.molecule-card p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+}
+.stat-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  justify-content: center;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+/* ===== SECTION BASE ===== */
+section { padding: 5rem 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-header { margin-bottom: 3.5rem; }
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  width: 1.5rem;
+  height: 1px;
+  background: var(--gold);
+}
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--navy);
+  font-weight: 600;
+  line-height: 1.2;
+}
+.section-header h2 span {
+  display: block;
+  font-size: 0.75em;
+  color: var(--slate-light);
+  font-style: italic;
+  font-weight: 400;
+}
+.divider {
+  width: 3rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-top: 1rem;
+}
+
+/* ===== RESEARCH ===== */
+#research { background: var(--cream); }
+.research-intro {
+  max-width: 720px;
+  margin-bottom: 3rem;
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 2;
+}
+.research-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.research-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.research-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--navy), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.research-card:hover::before { transform: scaleX(1); }
+.research-card:hover { box-shadow: 0 8px 30px rgba(26,39,68,0.1); transform: translateY(-2px); }
+.card-num {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+.research-card h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.research-card h3 em {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.9rem;
+  color: var(--slate-light);
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+.research-card p {
+  font-size: 0.85rem;
+  color: var(--slate);
+  line-height: 1.9;
+  margin-top: 0.75rem;
+}
+
+/* ===== PROFILE ===== */
+#profile { background: var(--white); }
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.profile-bio {
+  font-size: 0.92rem;
+  color: var(--slate);
+  line-height: 2;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+}
+.profile-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+.profile-meta-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.profile-meta-item strong {
+  min-width: 60px;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px; bottom: 6px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--navy), var(--border));
+}
+.timeline-section { margin-bottom: 2.5rem; }
+.timeline-section h3 {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  padding: 0.6rem 0 0.6rem 1.5rem;
+  position: relative;
+  font-size: 0.83rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -3px; top: 50%;
+  transform: translateY(-50%);
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--navy);
+}
+.timeline-year {
+  color: var(--slate-light);
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.75rem;
+  padding-top: 0.1rem;
+}
+.timeline-desc { color: var(--text); line-height: 1.7; }
+
+/* ===== PUBLICATIONS ===== */
+#publications { background: var(--cream); }
+.pub-year-group { margin-bottom: 3rem; }
+.pub-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  color: var(--navy);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.pub-year-count {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.72rem;
+  color: var(--slate-light);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+.pub-item {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+.pub-num {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  padding-top: 0.15rem;
+  white-space: nowrap;
+}
+.pub-content {}
+.pub-authors {
+  font-size: 0.8rem;
+  color: var(--slate-light);
+  line-height: 1.7;
+}
+.pub-authors strong { color: var(--navy); font-weight: 500; }
+.pub-title {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0.2rem 0;
+  font-weight: 400;
+}
+.pub-journal {
+  font-size: 0.78rem;
+  color: var(--slate);
+  font-style: italic;
+}
+.pub-doi {
+  display: inline-block;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: 'Source Code Pro', monospace;
+}
+.pub-doi:hover { text-decoration: underline; }
+
+/* ===== COURSES ===== */
+#courses { background: var(--white); }
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+.course-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.75rem;
+  transition: box-shadow 0.25s;
+}
+.course-card:hover { box-shadow: 0 4px 20px rgba(26,39,68,0.08); }
+.course-code {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.72rem;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+.course-card h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.course-card h3 em {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95em;
+  color: var(--slate-light);
+  font-style: italic;
+  display: block;
+  font-weight: 400;
+  margin-top: 0.1rem;
+}
+.course-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 0.68rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+.tag-term { background: #e8edf5; color: var(--navy); }
+.tag-eng { background: #fdf3e3; color: #92600a; }
+.course-desc {
+  font-size: 0.82rem;
+  color: var(--slate);
+  line-height: 1.8;
+}
+
+/* ===== CONTACT ===== */
+#contact {
+  background: var(--navy-dark);
+  color: var(--white);
+}
+#contact .section-label { color: var(--gold); }
+#contact .section-header h2 { color: var(--white); }
+#contact .section-header h2 span { color: rgba(255,255,255,0.45); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.contact-info { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 2; }
+.contact-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  align-items: flex-start;
+}
+.contact-item-label {
+  min-width: 80px;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+  padding-top: 0.1rem;
+}
+.contact-item-value { color: rgba(255,255,255,0.8); }
+.contact-item-value a { color: rgba(255,255,255,0.8); text-decoration: none; }
+.contact-item-value a:hover { color: var(--gold-light); }
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ext-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.85rem;
+  transition: all 0.25s;
+}
+.ext-link:hover {
+  border-color: rgba(184,150,90,0.4);
+  background: rgba(184,150,90,0.06);
+  color: var(--gold-light);
+}
+.ext-link-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.ext-link-text { flex: 1; }
+.ext-link-title { font-weight: 500; color: inherit; }
+.ext-link-sub { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.1rem; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy-dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.05em;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { display: none; }
+  .profile-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .nav-links { display: none; }
+  .timeline-item { grid-template-columns: 90px 1fr; }
+}
+
+/* ===== FADE IN ANIMATION ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      Yoshikiyo Lab
+      <span>島根大学 生命物理化学研究室</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#research">研究 / Research</a></li>
+      <li><a href="#profile">経歴 / Profile</a></li>
+      <li><a href="#publications">著作物 / Publications</a></li>
+      <li><a href="#courses">担当科目 / Courses</a></li>
+      <li><a href="#contact">連絡先 / Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-label">Laboratory of Biophysical Chemistry</div>
+      <h1>Yoshikiyo<br>Keisuke</h1>
+      <div class="hero-name-ja">吉清 恵介</div>
+      <div class="hero-title">
+        <strong>教授 / Professor</strong><br>
+        島根大学 生物資源科学部 生命科学科<br>
+        生命機能科学コース<br>
+        <br>
+        Faculty of Life and Environmental Sciences<br>
+        Shimane University
+      </div>
+      <div class="hero-cta">
+        <a href="#research" class="btn-primary">研究テーマを見る</a>
+        <a href="#publications" class="btn-outline">論文リスト</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="molecule-card">
+        <!-- Cyclodextrin SVG icon -->
+        <svg class="molecule-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer ring -->
+          <circle cx="60" cy="60" r="50" stroke="rgba(184,150,90,0.3)" stroke-width="1"/>
+          <!-- CD ring segments -->
+          <g stroke="rgba(184,150,90,0.7)" stroke-width="1.5" fill="none">
+            <path d="M60 10 L75 18 L75 36 L60 44 L45 36 L45 18 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M75 18 L90 26 L90 44 L75 52 L60 44 L75 36 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M90 44 L105 52 L105 70 L90 78 L75 70 L75 52 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M75 78 L90 86 L90 104 L75 112 L60 104 L60 86 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M45 78 L60 86 L60 104 L45 112 L30 104 L30 86 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M15 44 L30 36 L45 44 L45 62 L30 70 L15 62 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M15 44 L30 36 L45 44 L45 62 L30 70 L15 62 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+            <path d="M30 18 L45 26 L45 44 L30 52 L15 44 L15 26 Z" stroke="rgba(184,150,90,0.5)" fill="rgba(184,150,90,0.05)"/>
+          </g>
+          <!-- Center cavity -->
+          <circle cx="60" cy="60" r="18" stroke="rgba(184,150,90,0.4)" stroke-width="1" stroke-dasharray="3 3" fill="rgba(44,74,138,0.2)"/>
+          <!-- Guest molecule -->
+          <circle cx="60" cy="60" r="7" fill="rgba(184,150,90,0.7)"/>
+          <circle cx="60" cy="60" r="3" fill="rgba(255,255,255,0.9)"/>
+        </svg>
+        <h3>Cyclodextrin Group<br>シクロデキストリングループ</h3>
+        <p>食べられる分子カプセルで<br>健康機能食品を科学する</p>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Papers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">18+</div>
+            <div class="stat-label">Years</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Societies</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Research</div>
+      <h2>研究テーマ<span>Laboratory of Biophysical Chemistry</span></h2>
+      <div class="divider"></div>
+    </div>
+    <p class="research-intro fade-in">
+      私の研究では、<strong>シクロデキストリン</strong>と呼ばれる環状オリゴ糖を使っています。シクロデキストリンは、分子中央に疎水性の空洞を持つ、カプセル状の分子です。その空洞の中に、さまざまな分子やイオンを選択的に取り込む「包接」という現象を利用し、食品化学分野での応用研究を進めています。シクロデキストリンは食べられる化合物でもあり、この「食べられる分子カプセル」を活用することが研究の柱です。
+    </p>
+    <div class="research-cards">
+      <div class="research-card fade-in">
+        <div class="card-num">THEME 01</div>
+        <h3>シクロデキストリンの包接化学<em>Inclusion Chemistry of Cyclodextrins</em></h3>
+        <p>α・β・γシクロデキストリンとさまざまな分子との包接錯体形成を研究しています。NMR分光法や熱力学的解析を通じて、分子認識の機構と選択性を解明します。</p>
+      </div>
+      <div class="research-card fade-in">
+        <div class="card-num">THEME 02</div>
+        <h3>エゴマ油の粉末化と熱安定性<em>Encapsulation of Perilla Oil</em></h3>
+        <p>γ-シクロデキストリンとエゴマ油から包接錯体を調製し、エゴマ油の粉末化・酸化防止・熱安定性の向上に成功しました。食品としての扱いやすさを大幅に改善します。</p>
+      </div>
+      <div class="research-card fade-in">
+        <div class="card-num">THEME 03</div>
+        <h3>エゴマ油の体内吸収性向上<em>Enhanced Bioavailability of α-Linolenic Acid</em></h3>
+        <p>γ-CD包接体として摂取することで血漿中のα-リノレン酸濃度が有意に上昇することをラット・マウス実験で確認。肝臓・赤血球・脂肪組織においてもオメガ3系脂肪酸の増加を確認しました。</p>
+      </div>
+      <div class="research-card fade-in">
+        <div class="card-num">THEME 04</div>
+        <h3>脳のDHA組成への影響<em>Effect on Brain DHA Composition</em></h3>
+        <p>エゴマ油をγ-CD包接錯体として摂取したマウスでは、脳内のDHA組成比が上昇することを確認。加齢に伴うDHA低下の抑制と認知機能維持への応用が期待されます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Profile</div>
+      <h2>プロフィール<span>Curriculum Vitae</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="profile-grid">
+      <div class="fade-in">
+        <div class="profile-bio">
+          小学生の頃は、工業製品が機能する仕組みに興味を持ち、電化製品や機械をよく分解していました。その後は農業と化学に興味を持ち、みかん農家であった祖父の畑の手伝いを楽しんでいました。大学在学中は有機化学（シクロデキストリン誘導体の合成）、物理化学（主に熱力学第二法則）に関わる研究に携わる機会を得ました。現在は、それらの技術・知識を基に、食品化学分野で応用研究に挑戦しています。
+        </div>
+        <div class="profile-meta">
+          <div class="profile-meta-item">
+            <strong>学位</strong>
+            <span>博士（農学）— 鳥取大学（2008年3月）</span>
+          </div>
+          <div class="profile-meta-item">
+            <strong>所属</strong>
+            <span>シクロデキストリン学会 / 日本栄養・食糧学会 / 日本化学会</span>
+          </div>
+          <div class="profile-meta-item">
+            <strong>連絡先</strong>
+            <span>yoshikiyo [at] life.shimane-u.ac.jp</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline fade-in">
+        <div class="timeline-section">
+          <h3>Education / 学歴</h3>
+          <div class="timeline-item">
+            <div class="timeline-year">2005–2008</div>
+            <div class="timeline-desc">鳥取大学大学院 連合農学研究科 生物資源科学<br><small style="color:#9ca3af">United Graduate School of Agricultural Sciences, Tottori University</small></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2002–2004</div>
+            <div class="timeline-desc">島根大学大学院 生物資源科学研究科<br><small style="color:#9ca3af">Graduate School of Life and Environmental Sciences, Shimane University</small></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1998–2002</div>
+            <div class="timeline-desc">島根大学 生物資源科学部 生命工学科<br><small style="color:#9ca3af">Faculty of Life and Environmental Sciences, Shimane University</small></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">1995–1998</div>
+            <div class="timeline-desc">広島工業大学附属広島高等学校<br><small style="color:#9ca3af">（現 広島なぎさ高等学校）</small></div>
+          </div>
+        </div>
+        <div class="timeline-section">
+          <h3>Career / 職歴</h3>
+          <div class="timeline-item">
+            <div class="timeline-year">2025–現在</div>
+            <div class="timeline-desc"><strong>教授</strong> — 島根大学 学術研究院 農生命科学系<br><small style="color:#9ca3af">Professor, Shimane University</small></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2018–2025</div>
+            <div class="timeline-desc"><strong>准教授</strong> — 島根大学 学術研究院 農生命科学系<br><small style="color:#9ca3af">Associate Professor, Shimane University</small></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2008–2018</div>
+            <div class="timeline-desc"><strong>助教</strong> — 島根大学 生物資源科学部 生命工学科<br><small style="color:#9ca3af">Assistant Professor, Shimane University</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Publications</div>
+      <h2>著作物<span>Peer-Reviewed Articles</span></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2026 <span class="pub-year-count">3 papers</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[1]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>吉清 恵介</strong></div>
+          <div class="pub-title">シクロデキストリン包接によるエゴマ油の粉末化と消化吸収性の改善</div>
+          <div class="pub-journal">表面と界面（解説） 63巻5号 p.181-186（2026年5月10日発行）</div>
+          <a href="https://doi.org/10.4164/sptj.63.181" class="pub-doi" target="_blank">doi:10.4164/sptj.63.181</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[2]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Mohammad Ariful Islam Bhuiya, <strong>Keisuke Yoshikiyo</strong>, Yukine Moda, Pinky Karim Syeda K Fatima, Kaeko Murota</div>
+          <div class="pub-title">Functional evaluation of perilla leaf tea as a pancreatic lipase inhibitor: roles of rosmarinic acid and emulsion structure</div>
+          <div class="pub-journal">Bioscience, Biotechnology, and Biochemistry</div>
+          <a href="https://doi.org/10.1093/bbb/zbag021" class="pub-doi" target="_blank">doi:10.1093/bbb/zbag021</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[3]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Hideaki Kawahara, Yoshihito Koto, Yuuka Hitsuda, Koichi Kurata, <strong>Keisuke Yoshikiyo</strong>, et al.</div>
+          <div class="pub-title">Microcystin-LR Drives Early NAFLD Pathogenesis via Hepatic Cholesterol Accumulation: Dysregulation of Ldlr and Abcg1 Expression Uncoupled from Srebp2</div>
+          <div class="pub-journal">Toxins</div>
+          <a href="https://doi.org/10.3390/toxins18020092" class="pub-doi" target="_blank">doi:10.3390/toxins18020092</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2025 <span class="pub-year-count">4 papers</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[3]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Noritaka Hirohashi, Yoshiaki Tanaka, Seiji Sasai, Tomohiro Sasanami, Hiroki Ono, Yoko Iwata, Eiji Fujiwara, <strong>Keisuke Yoshikiyo</strong>, Miwa Tamura-Nakano</div>
+          <div class="pub-title">Discovery of adipocyte-like accessory reproductive cells in male giant squid</div>
+          <div class="pub-journal">microPublication Biology</div>
+          <a href="https://doi.org/10.17912/micropub.biology.001494" class="pub-doi" target="_blank">doi:10.17912/micropub.biology.001494</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[4]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Katsunori Ishii, Yu Ichisaka, Hikaru Sugiyama, Rin Kobayashi, Fuzuki Sakamoto, Kazuhisa Watanabe, <strong>Keisuke Yoshikiyo</strong>, Hidehisa Shimizu</div>
+          <div class="pub-title">Hexaraphane Affects the Activation of Hepatic PPARα Signaling: Impact on Plasma Triglyceride Levels and Hepatic Senescence with Aging</div>
+          <div class="pub-journal">Nutrients</div>
+          <a href="https://doi.org/10.3390/nu17111768" class="pub-doi" target="_blank">doi:10.3390/nu17111768</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[5]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>Yoshikiyo, K.</strong>; Shimizu, H.; Nagato, E.G.; Ishizuka, S.; Yamamoto, T.</div>
+          <div class="pub-title">Comparative Analysis of γ-Cyclodextrin, Perilla Oil, and Their Inclusion Complexes on Liver Injury and Dyslipidemia Associated with Elevated Gastrointestinal 12-Hydroxylated Bile Acid Levels</div>
+          <div class="pub-journal">Molecules</div>
+          <a href="http://dx.doi.org/10.3390/molecules30020281" class="pub-doi" target="_blank">doi:10.3390/molecules30020281</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[6]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>Yoshikiyo, K.</strong>; Shimizu, H.; Okada, H.; Hasegawa, A.; Yamamoto, T.</div>
+          <div class="pub-title">γ-Cyclodextrin Co-Ingestion Enhances the Bioavailability of Perilla Oil, Regardless of Inclusion Complex Formation</div>
+          <div class="pub-journal">International Journal of Molecular Sciences, 26 (2025)</div>
+          <a href="https://doi.org/10.3390/ijms26167776" class="pub-doi" target="_blank">doi:10.3390/ijms26167776</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2024 <span class="pub-year-count">3 papers</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[7]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Hitsuda, Y.; Koto, Y.; Kawahara, H.; Kurata, K.; <strong>Yoshikiyo, K.</strong>; et al.</div>
+          <div class="pub-title">Increased Prorenin Expression in the Kidneys May Be Involved in the Abnormal Renal Function Caused by Prolonged Environmental Exposure to Microcystin-LR</div>
+          <div class="pub-journal">Toxics</div>
+          <a href="http://dx.doi.org/10.3390/toxics12080547" class="pub-doi" target="_blank">doi:10.3390/toxics12080547</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[8]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Ino, M.; Kihara, J.; Ishihara, A.; Seki, K.; Tanaka, T.; <strong>Yoshikiyo, K.</strong>; Ueno, M.</div>
+          <div class="pub-title">Identification of antifungal compound isolated from Cercospora sp. ME202 and evaluation of its inhibitory activity against Colletotrichum orbiculare</div>
+          <div class="pub-journal">Journal of General Plant Pathology</div>
+          <a href="http://dx.doi.org/10.1007/s10327-023-01153-1" class="pub-doi" target="_blank">doi:10.1007/s10327-023-01153-1</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[9]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Honda, M.; Nakatsuka, A.; Esumi, T.; Yamauchi, N.; <strong>Yoshikiyo, K.</strong>; et al.</div>
+          <div class="pub-title">Enzymatic tissue browning caused by biological membrane degradation in the young immature fruit of 'Moriya' persimmon</div>
+          <div class="pub-journal">Scientia Horticulturae</div>
+          <a href="http://dx.doi.org/10.1016/j.scienta.2023.112555" class="pub-doi" target="_blank">doi:10.1016/j.scienta.2023.112555</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2023 <span class="pub-year-count">1 paper</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[10]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>Yoshikiyo, K.</strong>; Takahashi, M.; Narumiya, Y.; Honda, M.; Iwasaki, K.; Ishigaki, M.; Nagato, E.G.; Noothalapati, H.; Shimizu, H.; Murota, K.; Yamamoto, T.</div>
+          <div class="pub-title">Co-ingestion with γ-cyclodextrin improves bioavailability of α-linolenic acid in Perilla frutescens seed oil</div>
+          <div class="pub-journal">Food Hydrocolloids for Health</div>
+          <a href="http://dx.doi.org/10.1016/j.fhfh.2023.100116" class="pub-doi" target="_blank">doi:10.1016/j.fhfh.2023.100116</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2022 <span class="pub-year-count">2 papers</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[11]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Akihiro, T.; Yasui, R.; Yasuhira, S.; Matsumoto, K.I.; Tanaka, Y.; Matsuo, Y.; Shimizu, H.; Matsuzaki, T.; Matsumoto, S.; <strong>Yoshikiyo, K.</strong>; Ishida, H.</div>
+          <div class="pub-title">Tropomyosin micelles are the major components contributing to the white colour of boiled shellfish soups</div>
+          <div class="pub-journal">Scientific Reports</div>
+          <a href="http://dx.doi.org/10.1038/s41598-022-17911-8" class="pub-doi" target="_blank">doi:10.1038/s41598-022-17911-8</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[12]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Ishigaki, M.; Ito, A.; Hara, R.; Miyazaki, S.I.; Murayama, K.; Tsuji, S.; Inomata, M.; <strong>Yoshikiyo, K.</strong>; Yamamoto, T.; Ozaki, Y.</div>
+          <div class="pub-title">Development of an amino acid sequence-dependent analytical method for peptides using near-infrared spectroscopy</div>
+          <div class="pub-journal">Analyst</div>
+          <a href="http://dx.doi.org/10.1039/d2an00895e" class="pub-doi" target="_blank">doi:10.1039/d2an00895e</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-year-group fade-in">
+      <div class="pub-year">2021–2007 <span class="pub-year-count">earlier works</span></div>
+      <div class="pub-item">
+        <div class="pub-num">[13]</div>
+        <div class="pub-content">
+          <div class="pub-authors">Ishigaki, M.; et al.; <strong>Yoshikiyo, K.</strong>; Yamamoto, T.; Ozaki, Y.</div>
+          <div class="pub-title">Method of Monitoring the Number of Amide Bonds in Peptides Using Near-Infrared Spectroscopy (2021)</div>
+          <div class="pub-journal">Analytical Chemistry</div>
+          <a href="http://dx.doi.org/10.1021/acs.analchem.0c03424" class="pub-doi" target="_blank">doi:10.1021/acs.analchem.0c03424</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[14]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>吉清恵介</strong></div>
+          <div class="pub-title">エゴマ油の粉末化で広がる用途 (2020)</div>
+          <div class="pub-journal">産学官連携ジャーナル</div>
+          <a href="https://doi.org/10.1241/sangakukanjournal.16.11_4" class="pub-doi" target="_blank">doi:10.1241/sangakukanjournal.16.11_4</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[15]</div>
+        <div class="pub-content">
+          <div class="pub-authors"><strong>Yoshikiyo, K.</strong>; Yoshioka, Y.; Narumiya, Y.; Oe, S.; Kawahara, H.; Kurata, K.; Shimizu, H.; Yamamoto, T.</div>
+          <div class="pub-title">Thermal stability and bioavailability of inclusion complexes of perilla oil with γ-cyclodextrin (2019)</div>
+          <div class="pub-journal">Food Chemistry</div>
+          <a href="http://dx.doi.org/10.1016/j.foodchem.2019.04.093" class="pub-doi" target="_blank">doi:10.1016/j.foodchem.2019.04.093</a>
+        </div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-num">[16–30+]</div>
+        <div class="pub-content">
+          <div class="pub-title" style="color:var(--slate)">2007〜2018年の論文はresearchmapにて全文掲載しています。</div>
+          <a href="https://researchmap.jp/read0142537" class="pub-doi" target="_blank" style="font-size:0.82rem">→ researchmap.jp/read0142537</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Teaching</div>
+      <h2>担当科目<span>Courses &amp; Lectures</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="course-cards">
+      <div class="course-card fade-in">
+        <div class="course-code">WB23901 / 3-209</div>
+        <h3>分子認識工学<em>Molecular Recognition Engineering</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">前期 / Spring</span>
+          <span class="tag tag-eng">英語開講 / English</span>
+          <span class="tag tag-term">火1・火2</span>
+        </div>
+        <p class="course-desc">生体高分子の分子認識メカニズムを分子間相互作用の観点から解説し、人工分子認識素材の機能・応用を概説する。島根大学 学部生向け。</p>
+      </div>
+      <div class="course-card fade-in">
+        <div class="course-code">WB21500 / 3-201</div>
+        <h3>化学英語演習<em>Chemical English</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">前期 / Spring</span>
+          <span class="tag tag-term">金3・金4</span>
+        </div>
+        <p class="course-desc">SDGsにおける化学分野の英語文献・論文を読む力を養う。オムニバス形式で実施。</p>
+      </div>
+      <div class="course-card fade-in">
+        <div class="course-code">WB20201 / 1-401</div>
+        <h3>基礎化学実験 I<em>Basic Chemistry Lab I</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">前期 / Spring</span>
+          <span class="tag tag-term">集中講義</span>
+        </div>
+        <p class="course-desc">重量分析・容量分析・統計的データ処理・グラフ作成など、生命工学実験の基礎を体験的に習得する。</p>
+      </div>
+      <div class="course-card fade-in">
+        <div class="course-code">WB21101 / 1-501</div>
+        <h3>生物物理化学実験<em>Biophysical Chemistry Lab</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">前期 / Spring</span>
+          <span class="tag tag-term">集中講義</span>
+        </div>
+        <p class="course-desc">包接化合物と化学物質との平衡定数決定に必要な分析手法と機器の扱い方を体験的に学ぶ。</p>
+      </div>
+      <div class="course-card fade-in">
+        <div class="course-code">NSJ0001 / 1-315</div>
+        <h3>分子構造機能特論<em>Molecular Structure &amp; Function</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">前期 / Spring</span>
+          <span class="tag tag-term">木3・木4</span>
+        </div>
+        <p class="course-desc">修士課程向け。分子の構造と機能に関する高度な理解を目的としたオムニバス講義（第6〜9週担当）。</p>
+      </div>
+      <div class="course-card fade-in">
+        <div class="course-code">鳥取大学大学院 連合農学研究科</div>
+        <h3>科学コミュニケーション II<em>Scientific Communication II</em></h3>
+        <div class="course-meta">
+          <span class="tag tag-term">第2学期</span>
+          <span class="tag tag-eng">英語開講 / English</span>
+          <span class="tag tag-term">集中講義（3日間）</span>
+        </div>
+        <p class="course-desc">博士課程2年生を対象に口頭・ポスター発表を実施。研究の進捗発表を通じてプレゼンテーション能力と研究議論力を養う。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-label">Contact</div>
+      <h2>連絡先<span>Get in Touch</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item-label">所属</div>
+            <div class="contact-item-value">島根大学 生物資源科学部<br>生命科学科 生命機能科学コース</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">住所</div>
+            <div class="contact-item-value">〒690-8504<br>島根県松江市西川津町1060</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">TEL/FAX</div>
+            <div class="contact-item-value">(0852) 32-6571</div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">yoshikiyo [at] life.shimane-u.ac.jp<br><small style="color:rgba(255,255,255,0.35)">[at] を @ に書き換えて送信してください</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-links fade-in">
+        <a href="https://www.shimane-u.ac.jp/" class="ext-link" target="_blank">
+          <div class="ext-link-icon">🏛️</div>
+          <div class="ext-link-text">
+            <div class="ext-link-title">島根大学</div>
+            <div class="ext-link-sub">shimane-u.ac.jp</div>
+          </div>
+        </a>
+        <a href="https://www.life.shimane-u.ac.jp/" class="ext-link" target="_blank">
+          <div class="ext-link-icon">🔬</div>
+          <div class="ext-link-text">
+            <div class="ext-link-title">生物資源科学部</div>
+            <div class="ext-link-sub">life.shimane-u.ac.jp</div>
+          </div>
+        </a>
+        <a href="https://researchmap.jp/read0142537" class="ext-link" target="_blank">
+          <div class="ext-link-icon">📄</div>
+          <div class="ext-link-text">
+            <div class="ext-link-title">researchmap — 吉清恵介</div>
+            <div class="ext-link-sub">論文・研究情報データベース</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Keisuke Yoshikiyo — Laboratory of Biophysical Chemistry, Shimane University<br>
+  〒690-8504 島根県松江市西川津町1060</p>
+</footer>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, 80 * (Array.from(entry.target.parentElement.children).indexOf(entry.target)));
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Active nav link
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'rgba(184,150,90,0.9)' : 'rgba(255,255,255,0.75)';
+  });
+});
+</script>
+</body>
+</html>
