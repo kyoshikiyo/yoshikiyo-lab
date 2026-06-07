@@ -85,6 +85,17 @@ nav {
   transition: all 0.2s;
   font-weight: 400;
 }
+.nav-students {
+  border: 1px solid rgba(184,150,90,0.7) !important;
+  padding: 4px 12px !important;
+  color: var(--gold-light) !important;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s !important;
+}
+.nav-students:hover {
+  background: var(--gold) !important;
+  color: var(--navy-dark) !important;
+}
 .nav-links a:hover {
   color: var(--gold-light);
   background: rgba(255,255,255,0.06);
@@ -662,6 +673,297 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+
+<style>
+  /* ── Research Intro Block ── */
+  .research-intro {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(26,26,24,0.1);
+  }
+
+  .research-intro__lead {
+    font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+    line-height: 1.9;
+    color: #2a2a26;
+    font-weight: 300;
+    max-width: 680px;
+    margin-bottom: 2rem;
+  }
+
+  .research-intro__lead strong {
+    font-weight: 500;
+    color: #1a1a18;
+    border-bottom: 1.5px solid #4a8c60;
+    padding-bottom: 1px;
+  }
+
+  .research-intro__cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(26,26,24,0.1);
+    border: 1px solid rgba(26,26,24,0.1);
+  }
+
+  .research-intro__card {
+    background: #faf9f6;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    transition: background 0.2s;
+  }
+
+  .research-intro__card:hover {
+    background: #f3f0e8;
+  }
+
+  .research-intro__icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .research-intro__card-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a18;
+  }
+
+  .research-intro__card-body {
+    font-size: 12px;
+    color: #5a5a54;
+    line-height: 1.7;
+  }
+
+  .research-intro__tag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: #2a5c3f;
+    border: 1px solid #4a8c60;
+    padding: 2px 8px;
+    align-self: flex-start;
+  }
+</style>
+<style>
+  /* ── Lab Life Section ── */
+  .lab-life {
+    padding: 5rem 2rem;
+    background: #f3f0e8;
+  }
+
+  .lab-life .inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .lab-life__label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #4a8c60;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .lab-life__label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: #4a8c60;
+  }
+
+  .lab-life__title {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 2.5rem;
+    color: #1a1a18;
+  }
+
+  .lab-life__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .lab-life__card {
+    background: #faf9f6;
+    border: 1px solid rgba(26,26,24,0.1);
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .lab-life__card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(74,140,96,0.4);
+  }
+
+  /* 写真プレースホルダー */
+  .lab-life__photo {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #ede9dc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid rgba(26,26,24,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .lab-life__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .lab-life__photo-placeholder {
+    text-align: center;
+  }
+  .lab-life__photo-placeholder span {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .lab-life__photo-placeholder p {
+    font-size: 11px;
+    color: #8a8a84;
+    letter-spacing: 0.05em;
+  }
+  /* 写真追加後はこのクラスを削除 */
+  .lab-life__photo--placeholder {
+    background: #ede9dc;
+  }
+
+  .lab-life__card-body {
+    padding: 1.25rem;
+  }
+  .lab-life__card-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 0.4rem;
+  }
+  .lab-life__card-desc {
+    font-size: 12px;
+    color: #5a5a54;
+    line-height: 1.75;
+  }
+
+  /* 学生の声ブロック */
+  .lab-life__voice {
+    margin-top: 2rem;
+    padding: 1.75rem 2rem;
+    background: #faf9f6;
+    border: 1px solid rgba(26,26,24,0.1);
+    border-left: 3px solid #4a8c60;
+  }
+  .lab-life__voice-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a8c60;
+    margin-bottom: 1rem;
+  }
+  .lab-life__voices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+  }
+  .lab-life__quote {
+    font-size: 13px;
+    color: #4a4a46;
+    line-height: 1.85;
+  }
+  .lab-life__quote::before {
+    content: '「';
+    color: #4a8c60;
+    font-size: 15px;
+  }
+  .lab-life__quote::after {
+    content: '」';
+    color: #4a8c60;
+    font-size: 15px;
+  }
+  .lab-life__quote-attr {
+    font-size: 11px;
+    color: #8a8a84;
+    margin-top: 0.4rem;
+  }
+</style>
+<style>
+  /* ── Contact Intro ── */
+  .contact-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: rgba(184,150,90,0.2);
+    border: 1px solid rgba(184,150,90,0.2);
+    margin-bottom: 2.5rem;
+  }
+  .contact-step {
+    background: rgba(26,39,68,0.6);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .contact-step-num {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(184,150,90,0.5);
+    line-height: 1;
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .contact-step-body {}
+  .contact-step-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 0.3rem;
+  }
+  .contact-step-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  .contact-mailto {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--gold);
+    color: var(--navy-dark);
+    padding: 0.75rem 1.75rem;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: background 0.2s;
+  }
+  .contact-mailto:hover {
+    background: var(--gold-light);
+    color: var(--navy-dark);
+  }
+  .contact-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .contact-note strong {
+    color: rgba(255,255,255,0.55);
+    font-weight: 500;
+  }
+</style>
 </style>
 </head>
 <body>
@@ -679,6 +981,7 @@ footer {
       <li><a href="#publications">著作物 / Publications</a></li>
       <li><a href="#courses">担当科目 / Courses</a></li>
       <li><a href="#contact">連絡先 / Contact</a></li>
+      <li><a href="students.html" class="nav-students">学生の皆さんへ / Join Us</a></li>
     </ul>
   </div>
 </nav>
@@ -702,6 +1005,16 @@ footer {
       <div class="hero-cta">
         <a href="#research" class="btn-primary">研究テーマを見る</a>
         <a href="#publications" class="btn-outline">論文リスト</a>
+      </div>
+      <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(184,150,90,0.2);">
+        <p style="font-size:0.8rem; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.6rem;">For Students</p>
+        <p style="font-size:0.9rem; color:rgba(255,255,255,0.65); line-height:1.8; margin-bottom:1rem;">
+          食と健康を、分子のレベルで解き明かす研究室です。<br>
+          配属・見学にご興味のある学生の皆さんはこちらをご覧ください。
+        </p>
+        <a href="students.html" style="display:inline-flex; align-items:center; gap:0.5rem; font-size:0.82rem; color:var(--gold-light); border:1px solid rgba(184,150,90,0.5); padding:0.5rem 1.25rem; text-decoration:none; letter-spacing:0.05em; transition:background 0.2s, color 0.2s;" onmouseover="this.style.background='rgba(184,150,90,0.15)'" onmouseout="this.style.background='transparent'">
+          学生の皆さんへ / Join Us →
+        </a>
       </div>
     </div>
     <div class="hero-visual">
@@ -759,6 +1072,60 @@ footer {
     <p class="research-intro fade-in">
       私の研究では、<strong>シクロデキストリン</strong>と呼ばれる環状オリゴ糖を使っています。シクロデキストリンは、分子中央に疎水性の空洞を持つ、カプセル状の分子です。その空洞の中に、さまざまな分子やイオンを選択的に取り込む「包接」という現象を利用し、食品化学分野での応用研究を進めています。シクロデキストリンは食べられる化合物でもあり、この「食べられる分子カプセル」を活用することが研究の柱です。
     </p>
+    <div class="research-intro">
+
+  <p class="research-intro__lead">
+    私たちの研究の中心にあるのは、<strong>「食べられる分子カプセル」シクロデキストリン</strong>です。
+    エゴマ油などの健康成分をこのカプセルに包むことで、
+    <strong>体への吸収効率を高め、酸化しにくく、扱いやすい食品素材</strong>へと変えることができます。
+    「健康によいと分かっていても、続けにくい」——その課題を、分子レベルで解決することを目指しています。
+  </p>
+
+  <div class="research-intro__cards">
+
+    <div class="research-intro__card">
+      <div class="research-intro__icon">🫙</div>
+      <p class="research-intro__card-title">分子カプセルで油を「粉末化」</p>
+      <p class="research-intro__card-body">
+        液体のエゴマ油をサラサラの粉末に変えることに成功。
+        酸化しにくく、料理や食品への添加がしやすくなります。
+      </p>
+      <span class="research-intro__tag">扱いやすさの改善</span>
+    </div>
+
+    <div class="research-intro__card">
+      <div class="research-intro__icon">💊</div>
+      <p class="research-intro__card-title">オメガ3脂肪酸の吸収率を向上</p>
+      <p class="research-intro__card-body">
+        シクロデキストリンと一緒に摂取することで、
+        血液中のオメガ3濃度が有意に上昇することをラット実験で確認。
+      </p>
+      <span class="research-intro__tag">体への届きやすさ</span>
+    </div>
+
+    <div class="research-intro__card">
+      <div class="research-intro__icon">🫀</div>
+      <p class="research-intro__card-title">臓器の脂肪酸バランスへの影響</p>
+      <p class="research-intro__card-body">
+        血液だけでなく、肝臓・脳などの臓器でも
+        オメガ3系脂肪酸の組成比が変化することを明らかにしました。
+      </p>
+      <span class="research-intro__tag">健康機能の科学的根拠</span>
+    </div>
+
+    <div class="research-intro__card">
+      <div class="research-intro__icon">🔬</div>
+      <p class="research-intro__card-title">「食べられる」からこそ安全・実用的</p>
+      <p class="research-intro__card-body">
+        シクロデキストリンは食品添加物として認可された化合物。
+        医薬品ではなく「食品の科学」として研究を進めています。
+      </p>
+      <span class="research-intro__tag">食品化学・応用研究</span>
+    </div>
+
+  </div>
+</div>
+
     <div class="research-cards">
       <div class="research-card fade-in">
         <div class="card-num">THEME 01</div>
@@ -781,6 +1148,97 @@ footer {
         <p>エゴマ油をγ-シクロデキストリン（γ-CD）で包接して摂取することで、血液中だけでなくさまざまな臓器の脂肪酸組成に影響を与えることが明らかになりました。<br><a href="research4.html" style="font-size:0.82rem;color:var(--gold);text-decoration:none;font-weight:500;">詳細 →</a></p>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="lab-life" id="lab-life">
+  <div class="inner">
+    <p class="lab-life__label">Lab Life</p>
+    <h2 class="lab-life__title">研究室の日常</h2>
+
+    <div class="lab-life__grid">
+
+      <!-- カード1: 実験 -->
+      <div class="lab-life__card">
+        <div class="lab-life__photo lab-life__photo--placeholder">
+          <!-- 写真追加時: <img src="images/lab-experiment.jpg" alt="実験風景"> -->
+          <!-- プレースホルダー（写真追加後に削除） -->
+          <div class="lab-life__photo-placeholder">
+            <span>🧪</span>
+            <p>写真を追加予定</p>
+            <p>lab-experiment.jpg</p>
+          </div>
+        </div>
+        <div class="lab-life__card-body">
+          <p class="lab-life__card-title">実験・測定</p>
+          <p class="lab-life__card-desc">
+            HPLC・LC-MS・GC-MSなどを使い、脂肪酸やアミノ酸を定性・定量分析します。データ解析にはExcel・R・Pythonを活用します。
+            機器の扱い方から丁寧に指導するので、初心者でも安心です。
+          </p>
+        </div>
+      </div>
+
+      <!-- カード2: ゼミ -->
+      <div class="lab-life__card">
+        <div class="lab-life__photo lab-life__photo--placeholder">
+          <!-- 写真追加時: <img src="images/lab-seminar.jpg" alt="ゼミ風景"> -->
+          <div class="lab-life__photo-placeholder">
+            <span>📖</span>
+            <p>写真を追加予定</p>
+            <p>lab-seminar.jpg</p>
+          </div>
+        </div>
+        <div class="lab-life__card-body">
+          <p class="lab-life__card-title">週次ゼミ</p>
+          <p class="lab-life__card-desc">
+            週1回、全員が進捗を報告。英語論文の輪読も行い、
+            読む力・話す力を同時に鍛えます。
+          </p>
+        </div>
+      </div>
+
+      <!-- カード3: 学会 -->
+      <div class="lab-life__card">
+        <div class="lab-life__photo lab-life__photo--placeholder">
+          <!-- 写真追加時: <img src="images/lab-conference.jpg" alt="学会発表"> -->
+          <div class="lab-life__photo-placeholder">
+            <span>🎤</span>
+            <p>写真を追加予定</p>
+            <p>lab-conference.jpg</p>
+          </div>
+        </div>
+        <div class="lab-life__card-body">
+          <p class="lab-life__card-title">学会発表</p>
+          <p class="lab-life__card-desc">
+            優れた研究は国内外の学会で発表します。
+            学部生でも積極的に参加できる環境です。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 学生の声 -->
+    <div class="lab-life__voice">
+      <p class="lab-life__voice-label">Student Voice — 学生の声</p>
+      <div class="lab-life__voices">
+        <div>
+          <p class="lab-life__quote">
+            化学が得意ではなかったけど、実験が楽しくなりました。
+            先生がいつでも質問に答えてくれるので安心して研究できています。
+          </p>
+          <p class="lab-life__quote-attr">— 4年生（生命科学科）※ 実際のコメントに差し替えてください</p>
+        </div>
+        <div>
+          <p class="lab-life__quote">
+            食品と化学がつながっているのが面白い。
+            自分の研究が将来の健康食品につながるかもと思うとモチベーションが上がります。
+          </p>
+          <p class="lab-life__quote-attr">— 修士1年※ 実際のコメントに差し替えてください</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1115,6 +1573,42 @@ footer {
       <h2>連絡先<span>Get in Touch</span></h2>
       <div class="divider"></div>
     </div>
+    <!-- 問い合わせの流れ -->
+<div class="contact-steps fade-in">
+  <div class="contact-step">
+    <div class="contact-step-num">01</div>
+    <div class="contact-step-body">
+      <p class="contact-step-title">メールを送る</p>
+      <p class="contact-step-desc">件名に「研究室見学希望」と書いて送ってください。所属・学年も添えると返信がスムーズです。</p>
+    </div>
+  </div>
+  <div class="contact-step">
+    <div class="contact-step-num">02</div>
+    <div class="contact-step-body">
+      <p class="contact-step-title">日程を調整する</p>
+      <p class="contact-step-desc">数日以内に返信します。見学・相談の日時を一緒に決めましょう。</p>
+    </div>
+  </div>
+  <div class="contact-step">
+    <div class="contact-step-num">03</div>
+    <div class="contact-step-body">
+      <p class="contact-step-title">来室・オンライン面談</p>
+      <p class="contact-step-desc">研究室を見学しながら、研究内容・配属の流れについてざっくばらんに話しましょう。</p>
+    </div>
+  </div>
+</div>
+
+<!-- クリックできるメールボタン -->
+<a href="mailto:yoshikiyo@life.shimane-u.ac.jp?subject=研究室見学希望" class="contact-mailto fade-in">
+  ✉ メールを送る — yoshikiyo@life.shimane-u.ac.jp
+</a>
+
+<p class="contact-note fade-in">
+  <strong>どんな内容でも歓迎です。</strong><br>
+  「まだ迷っている」「少し話を聞きたいだけ」でも構いません。<br>
+  授業や研究室説明会の前後に直接声をかけていただいても大丈夫です。
+</p>
+
     <div class="contact-grid">
       <div class="fade-in">
         <div class="contact-info">

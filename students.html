@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学生の皆さんへ / Join Us — YOSHIKIYO Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --ink-soft: #4a4a46;
+    --ink-muted: #8a8a84;
+    --paper: #faf9f6;
+    --paper-warm: #f3f0e8;
+    --paper-tint: #ede9dc;
+    --accent: #2a5c3f;
+    --accent-light: #e8f0eb;
+    --accent-mid: #4a8c60;
+    --rule: rgba(26,26,24,0.12);
+    --serif: 'DM Serif Display', 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 7rem 2rem 4rem;
+    max-width: 900px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--accent-mid);
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 2;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.875rem 2rem;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: #1e4530; transform: translateY(-1px); }
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 2rem;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-muted);
+    display: flex; align-items: center; gap: 0.5rem;
+    animation: float 2.5s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .inner { max-width: 900px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent-mid); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 20px; height: 1px; background: var(--accent-mid);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 400; line-height: 1.2;
+    margin-bottom: 2.5rem; color: var(--ink);
+  }
+
+  /* MESSAGE */
+  .message-section { background: var(--paper); }
+  .message-grid {
+    display: grid; grid-template-columns: 1fr 2fr; gap: 4rem;
+    align-items: start;
+  }
+  .message-profile {
+    position: sticky; top: 80px;
+  }
+  .profile-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: var(--paper-tint);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--ink-muted); letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .profile-name {
+    font-family: var(--serif); font-size: 18px; font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+  .profile-role { font-size: 12px; color: var(--ink-muted); }
+
+  .message-body p {
+    font-size: 15px; line-height: 2.1; color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+  }
+  .message-body p strong { color: var(--ink); font-weight: 500; }
+  .message-signature {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--serif); font-size: 17px; color: var(--ink);
+  }
+
+  /* LIFE */
+  .life-section { background: var(--paper-warm); }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 1px solid var(--rule);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -2.375rem; top: 0.4rem;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--paper-warm); border: 1.5px solid var(--accent-mid);
+  }
+  .timeline-time {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent-mid); margin-bottom: 0.4rem;
+  }
+  .timeline-event { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
+  .timeline-note { font-size: 13px; color: var(--ink-soft); }
+
+  /* SKILLS */
+  .skills-section { background: var(--paper); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .skill-card {
+    border: 1px solid var(--rule); padding: 1.5rem;
+    background: var(--paper);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent-mid); transform: translateY(-2px); }
+  .skill-icon {
+    font-size: 22px; margin-bottom: 0.75rem;
+  }
+  .skill-title { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; }
+  .skill-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.7; }
+  .skills-note {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    font-size: 14px; color: var(--ink-soft); line-height: 1.9;
+  }
+  .skills-note strong { color: var(--accent); }
+
+  /* SCHEDULE */
+  .schedule-section { background: var(--paper-warm); }
+  .schedule-steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0; position: relative;
+  }
+  .step {
+    padding: 1.75rem 1.5rem;
+    border: 1px solid var(--rule);
+    margin-right: -1px; margin-bottom: -1px;
+    background: var(--paper-warm);
+    transition: background 0.2s;
+  }
+  .step:hover { background: var(--paper-tint); }
+  .step-num {
+    font-family: var(--serif); font-size: 2rem; color: var(--paper-tint);
+    line-height: 1; margin-bottom: 0.75rem;
+    -webkit-text-stroke: 1px var(--rule);
+  }
+  .step-time {
+    font-size: 11px; color: var(--accent-mid); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 0.4rem;
+  }
+  .step-title { font-size: 14px; font-weight: 500; margin-bottom: 0.4rem; }
+  .step-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* CAREERS */
+  .careers-section { background: var(--paper); }
+  .careers-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
+  }
+  .career-cat {
+    border: 1px solid var(--rule); padding: 1.25rem 1.5rem;
+  }
+  .career-cat-title {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent-mid); margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--rule);
+  }
+  .career-items { list-style: none; }
+  .career-items li {
+    font-size: 13px; color: var(--ink-soft); padding: 0.2rem 0;
+    display: flex; align-items: baseline; gap: 0.5rem;
+  }
+  .career-items li::before {
+    content: '—'; color: var(--ink-muted); font-size: 11px; flex-shrink: 0;
+  }
+
+  /* CONTACT CTA */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .cta-section .section-label { justify-content: center; color: var(--accent-mid); }
+  .cta-section .section-label::before { background: var(--accent-mid); }
+  .cta-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 400; margin: 1rem 0 1.5rem;
+    color: var(--paper);
+  }
+  .cta-desc { font-size: 14px; color: rgba(250,249,246,0.65); margin-bottom: 2.5rem; }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    border: 1px solid rgba(250,249,246,0.35);
+    color: var(--paper); padding: 0.875rem 2rem;
+    font-size: 13px; letter-spacing: 0.06em;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .cta-btn:hover {
+    background: rgba(250,249,246,0.08);
+    border-color: rgba(250,249,246,0.6);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 11px; color: var(--ink-muted);
+    border-top: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  footer a { color: var(--ink-muted); text-decoration: underline; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-label  { animation: fadeUp 0.7s ease both; animation-delay: 0.1s; }
+  .hero-title  { animation: fadeUp 0.7s ease both; animation-delay: 0.25s; }
+  .hero-subtitle { animation: fadeUp 0.7s ease both; animation-delay: 0.4s; }
+  .hero-cta    { animation: fadeUp 0.7s ease both; animation-delay: 0.55s; }
+
+  @media (max-width: 700px) {
+    .message-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .message-profile { position: static; }
+    .profile-photo { aspect-ratio: 1/1; }
+    .schedule-steps { grid-template-columns: 1fr 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">YOSHIKIYO Lab</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#research">Research</a>
+    <a href="students.html" style="color:var(--accent)">Join Us</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0">
+  <div class="hero">
+    <p class="hero-label">学生の皆さんへ / For Students</p>
+    <h1 class="hero-title">
+      食と健康を、<br>
+      <em>分子のレベル</em>で<br>解き明かす。
+    </h1>
+    <p class="hero-subtitle">
+      シクロデキストリン研究室では、「食べられる分子カプセル」を使って、
+      健康機能食品の科学に取り組んでいます。
+      化学・生命科学に興味がある学生を歓迎します。
+    </p>
+    <a href="#message" class="hero-cta">
+      教授からのメッセージを読む
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M8 3v10M3 8l5 5 5-5"/>
+      </svg>
+    </a>
+    <div class="hero-scroll">↓ scroll</div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message-section" id="message">
+  <div class="inner">
+    <p class="section-label">Message</p>
+    <h2 class="section-title">学生へのメッセージ</h2>
+    <div class="message-grid">
+      <div class="message-profile">
+        <div class="profile-photo">
+          <!-- 写真をここに挿入: <img src="photo.jpg" alt="吉清恵介 教授"> -->
+          <span>写真をここに挿入</span>
+        </div>
+        <p class="profile-name">吉清 恵介</p>
+        <p class="profile-role">教授 / Professor<br>島根大学 生物資源科学部</p>
+      </div>
+      <div class="message-body">
+        <p>
+          私が研究を始めたきっかけは、農業と化学の交差点に面白さを感じたことでした。
+          「植物由来のオメガ3系脂肪酸を、化学の力で体に届きやすくできるか」——
+          その問いひとつが、今も研究室全体を動かす原動力になっています。
+        </p>
+        <p>
+          <strong>この研究室で学べることは、化学の知識だけではありません。</strong>
+          データと向き合う粘り強さ、英語で論文を読む力、
+          そして「なぜ？」と問い続ける習慣。
+          これらは社会に出てからも必ず役立つ力です。
+        </p>
+        <p>
+          「化学は得意ではないけど、食や健康に興味がある」という学生も大歓迎です。
+          大切なのは好奇心と、やってみようという意欲です。
+          小規模な研究室だからこそ、ひとりひとりに向き合う時間を十分にとれます。
+        </p>
+        <p>
+          少しでも興味があれば、まず気軽にメールを送ってください。
+          見学はいつでも受け付けています。
+        </p>
+        <div class="message-signature">吉清 恵介</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY LIFE -->
+<section class="life-section" id="life">
+  <div class="inner">
+    <p class="section-label">Daily Life</p>
+    <h2 class="section-title">研究室の1日</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="timeline-time">9:00 am</p>
+        <p class="timeline-event">登室・実験準備</p>
+        <p class="timeline-note">その日の実験計画を確認。試薬の準備や装置のセットアップを行います。</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-time">10:00 am — 12:00 pm</p>
+        <p class="timeline-event">実験・データ取得</p>
+        <p class="timeline-note">HPLC・LC-MS・GC-MS・RT-qPCRや動物実験など。各自のテーマに沿って進めます。</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-time">12:00 pm</p>
+        <p class="timeline-event">昼食・フリータイム</p>
+        <p class="timeline-note">学食や近隣で。メンバーと話しながらリフレッシュする時間です。</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-time">1:00 pm — 5:00 pm</p>
+        <p class="timeline-event">実験継続・データ解析</p>
+        <p class="timeline-note">午前の実験を続けるか、データの整理・解析を行います。論文を読む時間もここで。</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-time">週1回（木曜）</p>
+        <p class="timeline-event">ゼミ・進捗報告</p>
+        <p class="timeline-note">全員が研究の進捗を報告。教授や仲間からフィードバックをもらいます。英語論文の輪読も実施。</p>
+      </div>
+      <div class="timeline-item" style="padding-bottom:0">
+        <p class="timeline-time">学期末</p>
+        <p class="timeline-event">学会発表・論文執筆</p>
+        <p class="timeline-note">国内外の学会での発表を目指します。優れた研究は論文として投稿します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="inner">
+    <p class="section-label">What You Need</p>
+    <h2 class="section-title">求めるスキル・<br>必要な前提知識</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🧪</div>
+        <p class="skill-title">基礎化学・有機化学</p>
+        <p class="skill-desc">学部1〜2年次の化学の基礎があれば十分。研究室内で必要な知識は一緒に学びます。</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <p class="skill-title">データ処理・Excel基礎</p>
+        <p class="skill-desc">実験データをグラフ化・解析する場面が多いです。Excel・R・Pythonの基礎は入室後に習得できます。</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📖</div>
+        <p class="skill-title">英語（読解）</p>
+        <p class="skill-desc">論文は英語がほとんど。辞書を使いながら読む力を徐々につけていきます。最初から流暢である必要はありません。</p>
+      </div>
+      <div class="skill-card" style="border-color: var(--accent-mid);">
+        <div class="skill-icon">💡</div>
+        <p class="skill-title" style="color: var(--accent);">好奇心と粘り強さ <span style="font-size:11px;font-weight:400;color:var(--accent-mid);">— 最も大切なこと</span></p>
+        <p class="skill-desc">
+          研究は「仮説を立て、実験で検証し、結果を考察する」この繰り返しです。
+          丁寧な実験が正確なデータを生み、その積み重ねが
+          わずかだけれど意味のある差を浮かび上がらせ、新たな発見につながります。
+          「なぜ？」と問い続け、地道に手を動かせる人を歓迎します。
+        </p>
+      </div>
+    </div>
+    <div class="skills-note">
+      <strong>化学が得意でなくても大丈夫です。</strong>
+      食品や健康、生命科学に興味があって、実験が好き（あるいは好きになれそう）な学生であれば、
+      入室後に必要な知識を一緒に身につけていけます。
+      まずは見学・相談から始めてください。
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule-section" id="schedule">
+  <div class="inner">
+    <p class="section-label">How to Join</p>
+    <h2 class="section-title">配属までの流れ</h2>
+    <p style="font-size:13px;color:var(--ink-soft);line-height:1.9;margin-bottom:2rem;">
+      生命科学科では<strong style="color:var(--ink)">2年次</strong>から「細胞生物学」「水圏・多様性生物学」「生命機能化学」「食生命科学」の4コースのいずれかに所属します。
+      吉清研究室は<strong style="color:var(--ink)">3年次後期</strong>から卒研生を受け入れており、
+      <strong style="color:var(--ink)">「生命機能化学」「食生命科学」の2コース</strong>の学生が対象です。
+    </p>
+    <div class="schedule-steps">
+      <div class="step">
+        <p class="step-num">01</p>
+        <p class="step-time">いつでも</p>
+        <p class="step-title">見学・相談</p>
+        <p class="step-desc">コース・学年を問わず歓迎します。メールで気軽に連絡してください。</p>
+      </div>
+      <div class="step">
+        <p class="step-num">02</p>
+        <p class="step-time">2年次</p>
+        <p class="step-title">コース所属</p>
+        <p class="step-desc">4コースのいずれかに所属。当研究室は「生命機能化学」「食生命科学」の2コースから卒研生を受け入れています。</p>
+      </div>
+      <div class="step">
+        <p class="step-num">03</p>
+        <p class="step-time">3年次 後期</p>
+        <p class="step-title">研究室配属</p>
+        <p class="step-desc">3年次後期から各研究室への配属が始まり、卒業研究がスタートします。</p>
+      </div>
+      <div class="step">
+        <p class="step-num">04</p>
+        <p class="step-time">4年次</p>
+        <p class="step-title">卒業研究</p>
+        <p class="step-desc">テーマ決め・文献調査・実験・データ解析を通じて、卒業論文をまとめます。</p>
+      </div>
+      <div class="step">
+        <p class="step-num">05</p>
+        <p class="step-time">4年次 2月頃</p>
+        <p class="step-title">卒業論文発表</p>
+        <p class="step-desc">1年間の研究成果を発表。優れた研究は学会発表や論文投稿へ。</p>
+      </div>
+      <div class="step">
+        <p class="step-num">06</p>
+        <p class="step-time">大学院（任意）</p>
+        <p class="step-title">修士・博士課程</p>
+        <p class="step-desc">より深く研究を続けたい人は大学院進学もサポートします。</p>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink-muted);margin-top:1.5rem;">
+      ※ 詳細は<a href="https://www.life.shimane-u.ac.jp/gakubu_annai/gaka_annai_new/seimeikagaku.html" target="_blank" style="color:var(--accent-mid);">生命科学科公式ページ</a>もご参照ください。
+    </p>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section class="careers-section" id="careers">
+  <div class="inner">
+    <p class="section-label">After Graduation</p>
+    <h2 class="section-title">卒業後の進路</h2>
+    <div class="careers-grid">
+      <div class="career-cat">
+        <p class="career-cat-title">食品・製薬業界</p>
+        <ul class="career-items">
+          <li>食品メーカー（研究開発・品質管理）</li>
+          <li>化学工業（研究開発・一般職）</li>
+          <li>食品検査・分析機関</li>
+        </ul>
+      </div>
+      <div class="career-cat">
+        <p class="career-cat-title">研究・教育</p>
+        <ul class="career-items">
+          <li>大学院進学（島根大学）</li>
+          <li>国公立研究機関</li>
+          <li>大学教員・研究員</li>
+        </ul>
+      </div>
+      <div class="career-cat">
+        <p class="career-cat-title">その他</p>
+        <ul class="career-items">
+          <li>化学・バイオ系メーカー</li>
+          <li>行政・農業関係機関</li>
+          <li>一般企業（理系職・技術営業）</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;">
+      ※ 上記は参考例です。実際の進路については見学・相談時にお聞きください。
+    </p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="cta-title">まず、話しかけてください。</h2>
+  <p class="cta-desc">
+    見学・質問・相談、どんなことでも構いません。<br>
+    メールをいただければ、できる限り早めにお返しします。
+  </p>
+  <a href="mailto:yoshikiyo@life.shimane-u.ac.jp" class="cta-btn">
+    yoshikiyo [at] life.shimane-u.ac.jp
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M3 8h10M9 4l4 4-4 4"/>
+    </svg>
+  </a>
+</section>
+
+<footer>
+  <p>© 2025 Keisuke Yoshikiyo — Laboratory of Biophysical Chemistry, Shimane University</p>
+  <p style="margin-top:0.4rem"><a href="index.html">← メインページに戻る</a></p>
+</footer>
+
+<script>
+  // Scroll animation for timeline items
+  const items = document.querySelectorAll('.timeline-item');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
+
+<!-- FAQ SECTION - 追加 -->
+<style>
+  .faq-section { background: var(--paper); padding: 5rem 2rem; }
+  .faq-list { max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.5rem 0;
+  }
+  .faq-item:first-child { border-top: 1px solid var(--rule); }
+  .faq-q {
+    font-size: 15px; font-weight: 500; color: var(--ink);
+    margin-bottom: 0.75rem;
+    display: flex; gap: 0.75rem; align-items: baseline;
+  }
+  .faq-q::before {
+    content: 'Q.';
+    color: var(--accent-mid); font-weight: 500;
+    flex-shrink: 0; font-size: 13px;
+  }
+  .faq-a {
+    font-size: 13px; color: var(--ink-soft); line-height: 1.9;
+    padding-left: 1.75rem;
+  }
+  .faq-a strong { color: var(--ink); font-weight: 500; }
+</style>
+
+<section class="faq-section" id="faq">
+  <div class="inner">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <p class="faq-q">どんな実験・分析をするの？</p>
+        <p class="faq-a">
+          HPLC・LC-MS・GC-MS・RT-qPCRなどの機器分析を中心に、脂肪酸やアミノ酸などの定性・定量分析を行います。
+          また動物実験も研究の重要な一部です。
+          データ解析にはExcel・R・Pythonを使います。いずれも入室後に丁寧に指導しますので、
+          <strong>事前の経験は必要ありません。</strong>
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">化学が得意でないと難しいですか？</p>
+        <p class="faq-a">
+          <strong>得意でなくても大丈夫です。</strong>
+          大切なのは「なぜ？」と問い続ける好奇心と、丁寧に実験を繰り返す粘り強さです。
+          仮説を立て、検証し、結果を考察するプロセスを一緒に学んでいきます。
+          食品や健康に興味がある学生を歓迎します。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">英語は必要ですか？</p>
+        <p class="faq-a">
+          論文は英語がほとんどですが、<strong>最初から流暢である必要はありません。</strong>
+          週次ゼミでの英語論文の輪読を通じて、辞書を引きながら少しずつ読む力をつけていきます。
+          英語で論文を書いたり、国際学会で発表する機会もあります。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">RやPythonは入室前に使えないといけませんか？</p>
+        <p class="faq-a">
+          <strong>入室前の習得は不要です。</strong>
+          研究が進む中で必要になった段階で、使い方を一緒に学んでいきます。
+          「プログラミングに触れたことがない」という学生でも問題ありません。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">卒業後の進路はどうなりますか？</p>
+        <p class="faq-a">
+          食品メーカー（研究開発・品質管理）・化学工業（研究開発・一般職）への就職や、大学院進学など多様な進路があります。
+          研究室で身につけた<strong>分析・データ解析・論理的思考力</strong>は、
+          どの業界でも活かせるスキルです。進路については見学・相談時に詳しくお話しします。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">見学はいつでもできますか？</p>
+        <p class="faq-a">
+          <strong>はい、随時受け付けています。</strong>
+          まずメールで連絡いただければ、授業の合間や放課後など都合のよい日時を一緒に調整します。
+          「まだ迷っている」「話を聞きたいだけ」でも歓迎です。
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <p class="faq-q">大学院に進む学生はいますか？</p>
+        <p class="faq-a">
+          はい。より深く研究を続けたい学生には<strong>大学院進学を積極的にサポート</strong>します。
+          修士課程では国内外の学会発表や論文投稿にも挑戦できます。
+          進学を迷っている場合も、気軽に相談してください。
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
