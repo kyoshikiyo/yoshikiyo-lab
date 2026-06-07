@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOSHIKIYO Lab — Shimane University (English)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #1a2744;
+    --gold: #b8965a;
+    --gold-light: #d4a96a;
+    --cream: #f8f6f1;
+    --text: #1f2937;
+    --text-light: #6b7280;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 3rem;
+  }
+  .badge {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .badge::before, .badge::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.9;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+  .contact {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(184,150,90,0.3);
+    padding-bottom: 2px;
+    transition: border-color 0.2s;
+  }
+  .email:hover { border-color: var(--gold-light); }
+  .back {
+    margin-top: 3rem;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .back:hover { color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+  <p class="logo">YOSHIKIYO Lab — Shimane University</p>
+  <p class="badge">Coming Soon</p>
+  <h1>English page<br>is <em>under construction.</em></h1>
+  <p>
+    We are preparing an English version of our laboratory website
+    for prospective graduate students (Master's and PhD programs).<br>
+    Please feel free to contact us in the meantime.
+  </p>
+  <p class="contact">Inquiries welcome in English:</p>
+  <a href="mailto:yoshikiyo@life.shimane-u.ac.jp?subject=Inquiry from prospective student" class="email">
+    yoshikiyo@life.shimane-u.ac.jp
+  </a>
+  <a href="index.html" class="back">← 日本語版に戻る / Back to Japanese</a>
+</body>
+</html>
