@@ -762,20 +762,7 @@ footer {
   }
 </style>
 <style>
-  /* ── Slideshow ── */
-  .lab-slideshow {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-  }
-  .lab-slideshow img {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; object-fit: cover;
-    opacity: 0; transition: opacity 0.8s ease;
-    display: block;
-  }
-  .lab-slideshow img:first-child { opacity: 1; }
-  .lab-slideshow img.active { opacity: 1; }
+
 
   /* ── Lab Life Section ── */
   .lab-life {
@@ -816,7 +803,7 @@ footer {
 
   .lab-life__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1rem;
   }
 
@@ -851,11 +838,33 @@ footer {
     object-fit: cover;
     display: block;
   }
+
+  /* ── Slideshow ── */
+  /* スマホ: スライドショー非表示、静止画を表示 */
+  .slide-mobile { display: block; }
+  .lab-slideshow { display: none; }
+
+  /* PC(768px以上): スライドショー表示、静止画を非表示 */
+  @media (min-width: 768px) {
+    .slide-mobile { display: none; }
+    .lab-slideshow {
+      display: block;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .lab-slideshow img {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .lab-slideshow img.active { opacity: 1; }
+    .lab-slideshow img:first-child { opacity: 1; }
+  }
   .lab-life__photo-placeholder {
     text-align: center;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
   }
   .lab-life__photo-placeholder span {
     display: block;
@@ -866,10 +875,6 @@ footer {
     font-size: 11px;
     color: #8a8a84;
     letter-spacing: 0.05em;
-  }
-  /* 写真追加後はこのクラスを削除 */
-  .lab-life__photo.lab-slideshow {
-    aspect-ratio: unset;
   }
 
   .lab-life__card-body {
@@ -1201,14 +1206,14 @@ footer {
       <!-- カード1: 実験 -->
       <div class="lab-life__card">
         <div class="lab-life__photo">
+          <!-- スマホ: slide-1.jpg のみ表示 -->
+          <img src="slide-1.jpg" alt="LC-MSを使ったデータ解析の様子" class="slide-mobile">
+          <!-- PC: スライドショー -->
           <div class="lab-slideshow">
-            <img src="lab-exp-1.jpg" alt="LC-MSデータ解析">
-            <img src="lab-exp-2.jpg" alt="HPLC解析">
-            <img src="lab-exp-3.jpg" alt="LC-MS装置">
-            <img src="lab-exp-4.jpg" alt="GC-MS装置">
-            <img src="lab-exp-5.jpg" alt="前処理装置">
-            <img src="lab-exp-6.jpg" alt="試料の前処理作業">
-            <img src="lab-exp-7.jpg" alt="データ解析中">
+            <img src="slide-1.jpg" alt="LC-MSデータ解析">
+            <img src="slide-2.jpg" alt="試料の前処理">
+            <img src="slide-3.jpg" alt="データ解析">
+            <img src="slide-4.jpg" alt="実験台での作業">
           </div>
         </div>
         <div class="lab-life__card-body">
@@ -1734,21 +1739,22 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
-<!-- Slideshow -->
+
+<!-- Slideshow (PC only) -->
 <script>
 (function() {
-  const slideshows = document.querySelectorAll('.lab-slideshow');
-  slideshows.forEach(function(ss) {
-    const imgs = ss.querySelectorAll('img');
-    if (imgs.length < 2) return;
-    let current = 0;
-    imgs[0].classList.add('active');
-    setInterval(function() {
-      imgs[current].classList.remove('active');
-      current = (current + 1) % imgs.length;
-      imgs[current].classList.add('active');
-    }, 3500);
-  });
+  if (window.innerWidth < 768) return;
+  const ss = document.querySelector('.lab-slideshow');
+  if (!ss) return;
+  const imgs = ss.querySelectorAll('img');
+  if (imgs.length < 2) return;
+  let current = 0;
+  imgs[0].classList.add('active');
+  setInterval(function() {
+    imgs[current].classList.remove('active');
+    current = (current + 1) % imgs.length;
+    imgs[current].classList.add('active');
+  }, 3500);
 })();
 </script>
 </body>
