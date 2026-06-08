@@ -57,44 +57,24 @@ nav {
 .section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
 .section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
 
-/* Figure mock */
-.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-.figure {
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  overflow: hidden;
-  background: var(--white);
+.bridge-box {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0eb 100%);
+  border-left: 3px solid var(--gold);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  border-radius: 0 6px 6px 0;
 }
-.figure-mock {
-  height: 220px;
-  background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 0.75rem; position: relative;
-}
-.figure-mock::before {
-  content: '';
-  width: 60px; height: 60px;
-  border: 2px dashed rgba(44,74,138,0.3);
-  border-radius: 50%;
-}
-.figure-mock-icon {
-  position: absolute;
-  font-size: 2rem;
-  opacity: 0.3;
-}
-.figure-num {
-  font-family: 'Source Code Pro', monospace;
-  font-size: 0.72rem;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-}
-.figure-caption {
-  padding: 1rem 1.25rem;
-  font-size: 0.8rem;
+.bridge-box p {
+  font-size: 0.88rem;
   color: var(--slate);
-  line-height: 1.7;
-  border-top: 1px solid var(--border-light);
+  line-height: 1.9;
+  margin: 0;
 }
+.bridge-box strong { color: var(--navy); font-weight: 500; }
+
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--white); }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
 .figure-caption strong { color: var(--navy); font-weight: 500; }
 
 .back-link {
@@ -129,14 +109,44 @@ footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.
   <div class="section">
     <h2><span></span>シクロデキストリンとは</h2>
     <p>シクロデキストリン（CD）は、グルコース分子が環状に連なった天然由来のオリゴ糖です。分子の中央に<strong>疎水性の空洞</strong>を持つカプセル状の構造をしており、その空洞の中にさまざまな分子やイオンを選択的に取り込みます。この現象を「<strong>包接</strong>」と呼び、できた錯体を「<strong>包接錯体</strong>」と呼びます。</p>
+    <p>包接という現象の本質は、<strong>分子間相互作用</strong>にあります。シクロデキストリンの化学は、疎水性相互作用・水素結合・ファンデルワールス力といった分子間の力を理解し、応用することを目指して発展してきました。生体内でも同様の分子間相互作用が酵素反応・受容体結合・脂質の消化吸収など多くの現象を支配しており、シクロデキストリン研究はその理解と応用への橋渡し役を担っています。</p>
     <p>シクロデキストリンには、グルコースの数によって3種類があります。6個のグルコースからなるα-CD、7個のβ-CD、8個のγ-CDで、空洞のサイズがそれぞれ異なります。比較的小さな分子に対しては分子全体を包接できますが、大きな分子に対してはその一部のみを包接することもあります。脂肪酸とシクロデキストリンとの包接錯体はその代表的な例です。</p>
     <p>シクロデキストリンは<strong>食べられる化合物</strong>であることも大きな利点の一つです。この「食べられる分子カプセル」を利用した研究を進めています。</p>
   </div>
 
   <div class="section">
-    <h2><span></span>研究内容</h2>
-    <p>α・β・γシクロデキストリンとさまざまな分子との包接錯体形成について、<strong>NMR分光法</strong>や<strong>熱力学的解析</strong>を用いて研究してきました。包接錯体の構造・安定性・選択性を解析し、分子認識の機構を明らかにすることが本研究の柱です。</p>
-    <p>これまでに、有機溶媒・エチレングリコール・シクロアルカノール・ナフタレン誘導体・有機リン酸などとの包接錯体の結合定数を決定し、包接の熱力学的特性を明らかにしてきました。また、シクロデキストリン誘導体（グアニジノ基付加体・メチル化体など）の合成と、その分子認識特性についても研究しています。</p>
+    <h2><span></span>基礎研究の蓄積</h2>
+    <p>当研究室ではかつて、α・β・γ-シクロデキストリンとさまざまな分子との包接錯体形成を<strong>NMR分光法</strong>や<strong>熱力学的解析</strong>によって体系的に研究していました。有機溶媒・エチレングリコール・シクロアルカノール・ナフタレン誘導体・有機リン酸などとの包接錯体の結合定数を決定し、包接の構造・安定性・選択性を定量的に明らかにしてきました。また、シクロデキストリン誘導体（グアニジノ基付加体・メチル化体など）の合成と分子認識特性についても研究しています。</p>
+    <p>その後、学部のNMR装置の運用停止を機に、研究の軸を<strong>応用分野へとシフト</strong>しました。しかし基礎研究で培った「どのゲスト分子がどのCDに、どの程度包接されるか」という分子レベルの知見は、現在の食品応用研究においても研究の根幹をなしています。<strong>γ-CDとエゴマ油の組み合わせを選んだ理由</strong>も、この基礎研究の蓄積があってこそです。</p>
+
+    <div class="bridge-box">
+      <p>基礎研究で得た包接化学の知見 → <strong>γ-CDとエゴマ油の包接錯体設計</strong> → <strong>体内吸収性向上の発見</strong>へ。<br>
+      土台となる分子認識の理解が、オリジナリティの高い応用研究を可能にしています。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>現在の研究アプローチ</h2>
+    <p>現在は包接化学の知見を基盤に、食品機能や生体への影響を実験的に検証しています。主な分析手法は以下のとおりです。</p>
+    <ul style="list-style:none;margin:1rem 0 1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">HPLC・LC-MS・GC-MS</strong> — 脂肪酸・アミノ酸などの定性・定量分析</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">RT-qPCR</strong> — 遺伝子発現解析</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">動物実験</strong> — ラット・マウスを用いた体内吸収性・臓器への影響の評価</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">統計解析（R・Python）</strong> — 実験データの解析・可視化</span>
+      </li>
+    </ul>
+    <p>分子の「包む・包まれる」という基礎的な相互作用の理解が、食品科学・栄養学への橋渡しとなっています。</p>
   </div>
 
   <div class="section">
@@ -152,7 +162,7 @@ footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.
       </div>
       <div class="figure">
         <img src="fig.3.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
-        <div class="figure-caption"><strong>Fig. 3</strong> — NMR分光法による包接錯体の結合定数（K）の測定例。化学シフト変化からゲスト分子の空洞内位置と錯体の安定性を定量的に評価できる。</div>
+        <div class="figure-caption"><strong>Fig. 3</strong> — NMR分光法による包接錯体の結合定数（K）の測定例。化学シフト変化からゲスト分子の空洞内位置と錯体の安定性を定量的に評価した。これらの基礎データが現在の食品応用研究の設計基盤となっている。</div>
       </div>
     </div>
   </div>
