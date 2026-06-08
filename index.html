@@ -840,29 +840,20 @@ footer {
   }
 
   /* ── Slideshow ── */
-  /* スマホ: スライドショー非表示、静止画を表示 */
-  .slide-mobile { display: block; }
-  .lab-slideshow { display: none; }
-
-  /* PC(768px以上): スライドショー表示、静止画を非表示 */
-  @media (min-width: 768px) {
-    .slide-mobile { display: none; }
-    .lab-slideshow {
-      display: block;
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-    }
-    .lab-slideshow img {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .lab-slideshow img.active { opacity: 1; }
-    .lab-slideshow img:first-child { opacity: 1; }
+  .lab-slideshow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
   }
+  .lab-slideshow img {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .lab-slideshow img.active { opacity: 1; }
+  .lab-slideshow img:first-child { opacity: 1; }
   .lab-life__photo-placeholder {
     text-align: center;
   }
@@ -1206,9 +1197,6 @@ footer {
       <!-- カード1: 実験 -->
       <div class="lab-life__card">
         <div class="lab-life__photo">
-          <!-- スマホ: slide-1.jpg のみ表示 -->
-          <img src="slide-1.jpg" alt="LC-MSを使ったデータ解析の様子" class="slide-mobile">
-          <!-- PC: スライドショー -->
           <div class="lab-slideshow">
             <img src="slide-1.jpg" alt="LC-MSデータ解析">
             <img src="slide-2.jpg" alt="試料の前処理">
@@ -1740,10 +1728,9 @@ window.addEventListener('scroll', () => {
 });
 </script>
 
-<!-- Slideshow (PC only) -->
+<!-- Slideshow -->
 <script>
 (function() {
-  if (window.innerWidth < 768) return;
   const ss = document.querySelector('.lab-slideshow');
   if (!ss) return;
   const imgs = ss.querySelectorAll('img');
