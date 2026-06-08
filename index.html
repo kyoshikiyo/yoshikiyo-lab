@@ -763,15 +763,19 @@ footer {
 </style>
 <style>
   /* ── Slideshow ── */
-  .lab-slideshow { position: relative; overflow: hidden; }
+  .lab-slideshow {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+  }
   .lab-slideshow img {
     position: absolute; top: 0; left: 0;
     width: 100%; height: 100%; object-fit: cover;
     opacity: 0; transition: opacity 0.8s ease;
+    display: block;
   }
   .lab-slideshow img:first-child { opacity: 1; }
   .lab-slideshow img.active { opacity: 1; }
-  .lab-slideshow img.prev { opacity: 0; }
 
   /* ── Lab Life Section ── */
   .lab-life {
@@ -812,7 +816,7 @@ footer {
 
   .lab-life__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
   }
 
@@ -849,6 +853,9 @@ footer {
   }
   .lab-life__photo-placeholder {
     text-align: center;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
   }
   .lab-life__photo-placeholder span {
     display: block;
@@ -861,8 +868,8 @@ footer {
     letter-spacing: 0.05em;
   }
   /* 写真追加後はこのクラスを削除 */
-  .lab-life__photo--placeholder {
-    background: #ede9dc;
+  .lab-life__photo.lab-slideshow {
+    aspect-ratio: unset;
   }
 
   .lab-life__card-body {
@@ -1193,15 +1200,16 @@ footer {
 
       <!-- カード1: 実験 -->
       <div class="lab-life__card">
-        <div class="lab-life__photo lab-slideshow">
-          <img src="lab-exp-1.jpg" alt="LC-MSデータ解析">
-          <img src="lab-exp-2.jpg" alt="HPLC解析">
-          <img src="lab-exp-3.jpg" alt="LC-MS装置">
-          <img src="lab-exp-4.jpg" alt="GC-MS装置">
-          <img src="lab-exp-5.jpg" alt="前処理装置">
-          <img src="lab-exp-6.jpg" alt="試料の前処理作業">
-          <img src="lab-exp-7.jpg" alt="データ解析中">
-        </div>
+        <div class="lab-life__photo">
+          <div class="lab-slideshow">
+            <img src="lab-exp-1.jpg" alt="LC-MSデータ解析">
+            <img src="lab-exp-2.jpg" alt="HPLC解析">
+            <img src="lab-exp-3.jpg" alt="LC-MS装置">
+            <img src="lab-exp-4.jpg" alt="GC-MS装置">
+            <img src="lab-exp-5.jpg" alt="前処理装置">
+            <img src="lab-exp-6.jpg" alt="試料の前処理作業">
+            <img src="lab-exp-7.jpg" alt="データ解析中">
+          </div>
         </div>
         <div class="lab-life__card-body">
           <p class="lab-life__card-title">実験・測定</p>
