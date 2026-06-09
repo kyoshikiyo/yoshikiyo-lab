@@ -367,15 +367,14 @@
   <section id="sec-omega" class="section active" role="tabpanel">
 
     <div class="progress-bar" id="prog-omega">
-      <span class="done"></span><span></span><span></span><span></span><span></span>
+      <span class="done"></span><span></span><span></span><span></span>
     </div>
 
     <nav class="step-nav" aria-label="ステップ" id="steps-omega">
-      <button class="active" onclick="goStep('omega',0,5,this)">① 脂肪酸って？</button>
-      <button onclick="goStep('omega',1,5,this)">② トリグリセリドとは</button>
-      <button onclick="goStep('omega',2,5,this)">③ オメガ3とは</button>
-      <button onclick="goStep('omega',3,5,this)">④ えごま油の特徴</button>
-      <button onclick="goStep('omega',4,5,this)">⑤ 体への効果</button>
+      <button class="active" onclick="goStep('omega',0,4,this)">① 脂肪酸って？</button>
+      <button onclick="goStep('omega',1,4,this)">② トリグリセリドとは</button>
+      <button onclick="goStep('omega',2,4,this)">③ オメガ3とは</button>
+      <button onclick="goStep('omega',3,4,this)">④ えごま油の特徴</button>
     </nav>
 
     <!-- step 0 -->
@@ -412,7 +411,7 @@
         <span class="callout-tag">基本</span>
         <p>油の正体は「脂肪酸」という分子。炭素 (C) がチェーンみたいにつながっていて、長さや形によって性質が全然違います。私たちが食べる「油」は、こんな分子の集まりです。</p>
       </div>
-      <div class="next-row"><button class="btn-next" onclick="goStep('omega',1,5,null)">次へ →</button></div>
+      <div class="next-row"><button class="btn-next" onclick="goStep('omega',1,4,null)">次へ →</button></div>
     </div>
 
     <!-- step 1: トリグリセリド -->
@@ -452,9 +451,9 @@
       </div>
       <div class="callout callout-purple">
         <span class="callout-tag">トリグリセリドとは</span>
-        <p>私たちが食事で摂る油の多くは「トリグリセリド」という形をしています。1つのグリセロール（背骨）に3本の脂肪酸がつながった分子です。えごま油もこの形で、3本の脂肪酸のうちの1本がオメガ3（α-リノレン酸）です。</p>
+        <p>私たちが食事で摂る油の多くは「トリグリセリド」という形をしています。1つのグリセロール（背骨）に3本の脂肪酸がつながった分子です。えごま油もこの形で、3本の脂肪酸のうちのおおよそ2本がオメガ3（α-リノレン酸）です。</p>
       </div>
-      <div class="next-row"><button class="btn-next" onclick="goStep('omega',2,5,null)">次へ →</button></div>
+      <div class="next-row"><button class="btn-next" onclick="goStep('omega',2,4,null)">次へ →</button></div>
     </div>
 
     <!-- step 2: オメガ3 — 3D分子ビューアー -->
@@ -470,9 +469,9 @@
       </div>
       <div class="callout callout-teal">
         <span class="callout-tag">ポイント</span>
-        <p>「オメガ3」は二重結合が3か所あり、分子が大きく曲がっています。この形が細胞膜をやわらかくし、血液の流れや脳・神経の働きに良い影響をもたらします。4種類を切り替えて形の違いを確かめてみてください。</p>
+        <p>「オメガ3」は、脂肪酸の種類を表す名前です。メチル基（CH₃）側から数えて最初の二重結合が3番目の炭素にある脂肪酸を指します。オメガ3脂肪酸は複数の二重結合を持つため分子が折れ曲がった形になり、この性質が細胞膜をしなやかに保つことに役立っています。オメガ3脂肪酸は血液や脳・神経の健康との関わりが多く研究されています。4種類を切り替えて形の違いを確かめてみてください。</p>
       </div>
-      <div class="next-row"><button class="btn-next" onclick="goStep('omega',3,5,null)">次へ →</button></div>
+      <div class="next-row"><button class="btn-next" onclick="goStep('omega',3,4,null)">次へ →</button></div>
     </div>
 
     <!-- step 3: えごま油の特徴 (旧 step 2) -->
@@ -486,57 +485,17 @@
         <div class="card">
           <div class="card-icon">🐟</div>
           <div class="card-label">魚油（DHA・EPA）</div>
-          <div class="card-desc">オメガ3が体内での変換済み形で含まれ、即効性がある。</div>
+          <div class="card-desc">えごま油の主成分であるα-リノレン酸は、体内でDHAやEPAへと代謝されます。</div>
         </div>
         <div class="card">
           <div class="card-icon">⚠️</div>
           <div class="card-label">えごま油の弱点</div>
-          <div class="card-desc">酸化しやすく、液体なので食品に使いにくい。吸収率も低め。</div>
+          <div class="card-desc">酸化しやすく、液体なので食品に使いにくい。吸収率については、不明なことも多い。</div>
         </div>
       </div>
       <div class="callout callout-amber">
         <span class="callout-tag">ここが研究の出番</span>
-        <p>えごま油は「体に良い」と分かっていても、体内での吸収率が低く、しかも酸化（劣化）しやすいという課題があります。この二つの問題を分子の工夫で解決しようとしているのが吉清研究室の研究です。</p>
-      </div>
-      <div class="next-row"><button class="btn-next" onclick="goStep('omega',4,5,null)">次へ →</button></div>
-    </div>
-
-    <!-- step 4: 体への効果 (旧 step 3) -->
-    <div id="omega-4" class="step">
-      <div class="fig">
-        <svg viewBox="0 0 680 170" xmlns="http://www.w3.org/2000/svg">
-          <text x="340" y="22" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="14" fill="#6b6b68">えごま油を摂ると体の中で起きること</text>
-          <rect x="16"  y="48" width="118" height="68" rx="10" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.2"/>
-          <text x="75" y="76" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" fill="#085041" font-weight="500">えごま油</text>
-          <text x="75" y="95" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="12" fill="#0F6E56">α-リノレン酸</text>
-          <polygon points="140,82 156,76 156,88" fill="#1D9E75"/>
-          <line x1="134" y1="82" x2="156" y2="82" stroke="#1D9E75" stroke-width="1.5"/>
-          <rect x="158" y="48" width="118" height="68" rx="10" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
-          <text x="217" y="76" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" fill="#3C3489" font-weight="500">体内変換</text>
-          <text x="217" y="95" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="12" fill="#534AB7">EPA / DHA</text>
-          <polygon points="282,82 298,76 298,88" fill="#534AB7"/>
-          <line x1="276" y1="82" x2="298" y2="82" stroke="#534AB7" stroke-width="1.5"/>
-          <rect x="300" y="40" width="138" height="38" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
-          <text x="369" y="58" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" fill="#633806">血液サラサラ</text>
-          <text x="369" y="72" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="11" fill="#854F0B">血栓予防・動脈硬化対策</text>
-          <rect x="300" y="88" width="138" height="38" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1"/>
-          <text x="369" y="106" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" fill="#0C447C">脳・神経の働き</text>
-          <text x="369" y="120" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="11" fill="#185FA5">認知機能のサポート</text>
-          <line x1="438" y1="59" x2="468" y2="59" stroke="#e0ded8" stroke-width="1" stroke-dasharray="4,2"/>
-          <line x1="438" y1="107" x2="468" y2="107" stroke="#e0ded8" stroke-width="1" stroke-dasharray="4,2"/>
-          <rect x="470" y="40" width="188" height="86" rx="10" fill="#F5F4F0" stroke="#e0ded8" stroke-width="1"/>
-          <text x="564" y="66" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="13" fill="#444441">炎症を抑える</text>
-          <text x="564" y="85" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="12" fill="#6b6b68">アレルギー・生活習慣病</text>
-          <text x="564" y="102" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="12" fill="#6b6b68">予防への可能性</text>
-          <text x="340" y="155" text-anchor="middle" font-family="'Noto Sans JP',sans-serif" font-size="12" fill="#1D9E75">吉清研究室：この吸収効率を高める研究に取り組んでいます</text>
-        </svg>
-      </div>
-      <div class="callout callout-teal">
-        <span class="callout-tag">研究の成果</span>
-        <p>シクロデキストリンと一緒に摂取することで、血液中のα-リノレン酸濃度が有意に上昇することをラット・マウス実験で確認。体だけでなく、肝臓や脳などの臓器でも脂肪酸の組成が変化することも明らかになっています。</p>
-      </div>
-      <div class="next-row">
-        <button class="btn-next" onclick="switchTab('cd', document.querySelectorAll('.tab-nav button')[1])">分子カプセルの話へ →</button>
+        <p>えごま油は「体に良い」と分かっていても、酸化（劣化）しやすく、食品に添加しずらいという課題があります。そこで「えごま油を粉末にして、さらに吸収率も高めよう」としているのが吉清研究グループの研究です。</p>
       </div>
     </div>
 
@@ -712,7 +671,7 @@ function switchTab(name, btn) {
   }
 }
 
-function goStep
+function goStep(sec, idx, total, btn) {
   // hide all steps
   for (let i = 0; i < total; i++) {
     const el = document.getElementById(sec + '-' + i);
