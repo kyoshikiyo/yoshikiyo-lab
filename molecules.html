@@ -162,7 +162,7 @@ canvas{width:100%;display:block;touch-action:none}
 </header>
 <main>
   <p class="page-title">鍵となる分子をのぞいてみよう</p>
-  <p class="page-sub">吉清研究グループが扱う分子を、実際の3Dデータで見てみよう。</p>
+  <p class="page-sub">吉清研究室が扱う分子を、実際の3Dデータで見てみよう。</p>
 
   <div class="cat-tabs">
     <button class="cat-tab active" onclick="switchCat('fa',this)">脂肪酸（えごま油の成分）</button>
@@ -173,11 +173,11 @@ canvas{width:100%;display:block;touch-action:none}
   <!-- ══ FA ══ -->
   <div id="sec-fa" class="mol-section active">
     <div class="mol-chips">
-      <button class="mol-chip sat active" onclick="selectFA(0,this)">パルミチン酸（飽和脂肪酸）</button>
-      <button class="mol-chip sat"        onclick="selectFA(1,this)">ステアリン酸（飽和脂肪酸）</button>
-      <button class="mol-chip o9"         onclick="selectFA(2,this)">オレイン酸（オメガ9）</button>
-      <button class="mol-chip o6"         onclick="selectFA(3,this)">リノール酸（オメガ6）</button>
-      <button class="mol-chip o3"         onclick="selectFA(4,this)">α-リノレン酸（オメガ3）★</button>
+      <button class="mol-chip sat active" onclick="selectFA(0,this)">C16:0 パルミチン酸</button>
+      <button class="mol-chip sat"        onclick="selectFA(1,this)">C18:0 ステアリン酸</button>
+      <button class="mol-chip o9"         onclick="selectFA(2,this)">C18:1 オレイン酸</button>
+      <button class="mol-chip o6"         onclick="selectFA(3,this)">C18:2 リノール酸</button>
+      <button class="mol-chip o3"         onclick="selectFA(4,this)">C18:3 α-リノレン酸 ★</button>
     </div>
     <div class="viewer-wrap">
       <canvas id="fa-canvas" height="380"></canvas>
@@ -200,15 +200,15 @@ canvas{width:100%;display:block;touch-action:none}
     </div>
     <div class="compare">
       <h3>二重結合数の比較</h3>
-      <div class="cmp-row"><div class="cmp-label">C16:0 パルミチン酸<br><span style="font-size:11px;color:var(--muted)">えごま油・動物性脂肪</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
-      <div class="cmp-row"><div class="cmp-label">C18:0 飽和脂肪酸<br><span style="font-size:11px;color:var(--muted)">バター・肉の脂</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
-      <div class="cmp-row"><div class="cmp-label">C18:1 オメガ9<br><span style="font-size:11px;color:var(--muted)">オリーブオイル</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:33%;background:#BA7517"></div></div><div class="cmp-num">1</div></div>
-      <div class="cmp-row"><div class="cmp-label">C18:2 オメガ6<br><span style="font-size:11px;color:var(--muted)">サラダ油</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:66%;background:#C0392B"></div></div><div class="cmp-num">2</div></div>
-      <div class="cmp-row"><div class="cmp-label hi">C18:3 オメガ3 ★<br><span style="font-size:11px;color:var(--teal)">えごま油・α-リノレン酸</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:100%;background:#1D9E75"></div></div><div class="cmp-num" style="color:var(--teal-dk);font-weight:500">3</div></div>
+      <div class="cmp-row"><div class="cmp-label">C16:0 パルミチン酸<br><span style="font-size:11px;color:var(--muted)">パーム油・動物性脂肪などに豊富</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
+      <div class="cmp-row"><div class="cmp-label">C18:0 飽和脂肪酸<br><span style="font-size:11px;color:var(--muted)">バター・カカオ脂などに豊富</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
+      <div class="cmp-row"><div class="cmp-label">C18:1 オメガ9<br><span style="font-size:11px;color:var(--muted)">オリーブオイル・なたね油などに豊富</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:33%;background:#BA7517"></div></div><div class="cmp-num">1</div></div>
+      <div class="cmp-row"><div class="cmp-label">C18:2 オメガ6<br><span style="font-size:11px;color:var(--muted)">大豆油・コーン油などに豊富</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:66%;background:#C0392B"></div></div><div class="cmp-num">2</div></div>
+      <div class="cmp-row"><div class="cmp-label hi">C18:3 オメガ3 ★<br><span style="font-size:11px;color:var(--teal)">えごま油・亜麻仁油などに豊富</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:100%;background:#1D9E75"></div></div><div class="cmp-num" style="color:var(--teal-dk);font-weight:500">3</div></div>
     </div>
     <div class="callout callout-teal" style="margin-top:20px">
       <span class="callout-tag">なぜ形が大事？</span>
-      <p>二重結合が増えるほど分子が「曲がり」ます。この曲がり加減が細胞膜のやわらかさと関連します。オメガ3が持つ健康効果の一つとされています。3Dモデルを回転させて形の違いを確かめてみてください。</p>
+      <p>二重結合が増えるほど分子が「曲がり」ます。この曲がりが細胞膜をやわらかくし、オメガ3が持つ健康効果の源です。3Dモデルを回転させて形の違いを確かめてみてください。</p>
     </div>
   </div>
 
@@ -228,7 +228,7 @@ canvas{width:100%;display:block;touch-action:none}
       <div class="cd-card active-card" id="cd-card-2" onclick="selectCD(2,this)">
         <div class="cd-ring" style="width:78px;height:78px;border-width:12px;border-color:#1D9E75"></div>
         <div class="cd-name" style="color:var(--teal-dk)">γ-CD</div>
-        <div class="cd-detail">8糖・空洞径 7.5〜8.3Å<br>えごま油の脂肪酸に最適</div>
+        <div class="cd-detail">8糖・空洞径 7.5〜8.3Å<br>えごま油の脂肪酸を収納</div>
         <div class="cd-star">★ 研究室で使用</div>
       </div>
     </div>
@@ -253,7 +253,7 @@ canvas{width:100%;display:block;touch-action:none}
     <div class="info-card">
       <div class="ic-name" id="cd-name">γ-シクロデキストリン（γ-CD）</div>
       <div class="ic-sub"  id="cd-formula">C₄₈H₈₀O₄₀ — ブドウ糖8個が環状に結合</div>
-      <div class="ic-desc" id="cd-desc">私たちが使用するγ-CDは、3種類の中で最も空洞が広く、えごま油に含まれるα-リノレン酸（オメガ3）の脂肪酸鎖を包み込むのにピッタリなサイズです。</div>
+      <div class="ic-desc" id="cd-desc">吉清研究室が使用するγ-CDは、3種類の中で最も空洞が広く、えごま油に含まれるα-リノレン酸（オメガ3）の脂肪酸鎖をすっぽり包み込める唯一のサイズです。</div>
     </div>
     <hr class="divider">
     <p style="font-size:14px;font-weight:500;margin-bottom:12px;">γ-CDの実際の分子モデル（ファンデルワールス半径表示）</p>
@@ -266,7 +266,7 @@ canvas{width:100%;display:block;touch-action:none}
     </div>
     <div class="callout callout-purple">
       <span class="callout-tag">サイズの一致が鍵</span>
-      <p>α-CDでは空洞が小さすぎ、β-CDでもまだ狭い。γ-CDの空洞径（7.5〜8.3Å）がえごま油の脂肪酸鎖を2本まとめて取り込める大きさになります。接着剤も共有結合も不要——ぴったりサイズが合うだけで「包接」が起きます。</p>
+      <p>α-CDでは空洞が小さすぎ、β-CDでもまだ狭い。γ-CDの空洞径（7.5〜8.3Å）がはじめてえごま油の脂肪酸鎖を丸ごと取り込める大きさになります。接着剤も化学反応も不要——ぴったりサイズが合うだけで「包接」が起きます。</p>
     </div>
   </div>
 
@@ -318,16 +318,16 @@ const FA_INFO = [
   {name:"C18:2 リノール酸（オメガ6）",formula:"CH₃-(CH₂)₄-(CH=CH-CH₂)₂-(CH₂)₆-COOH",dbl:2,
     desc:"二重結合が2か所。サラダ油・コーン油に多い必須脂肪酸。現代の食事では摂りすぎになりがちです。",key:"C18:2 オメガ6（リノール酸）"},
   {name:"C18:3 α-リノレン酸（オメガ3）",formula:"CH₃-CH₂-(CH=CH-CH₂)₃-(CH₂)₆-COOH",dbl:3,
-    desc:"二重結合が3か所。えごま油に60%以上含まれます。体内でDHA・EPAに変換され、脳や血管の健康に深く関わります。私たちはこの分子の吸収率を高める研究をしています。",key:"C18:3 オメガ3（α-リノレン酸）"}
+    desc:"二重結合が3か所。えごま油に60%以上含まれます。体内でDHA・EPAに変換され、脳や血管の健康に深く関わります。吉清研究室ではこの分子の吸収率を高める研究をしています。",key:"C18:3 オメガ3（α-リノレン酸）"}
 ];
 
 const CD_INFO = [
   {name:"α-シクロデキストリン（α-CD）",formula:"C₃₆H₆₀O₃₀ — ブドウ糖6個が環状に結合",sugar:6,
-    desc:"3種の中で最も小さいCD。空洞径は4.7〜5.3Åで、小さな芳香族分子などを包接します。",key:"α-CD（6糖）"},
+    desc:"3種の中で最も小さいCD。空洞径は4.7〜5.3Åで、小さな芳香族分子などを包接します。えごま油の脂肪酸には小さすぎます。",key:"α-CD（6糖）"},
   {name:"β-シクロデキストリン（β-CD）",formula:"C₄₂H₇₀O₃₅ — ブドウ糖7個が環状に結合",sugar:7,
-    desc:"最も広く産業・医薬品分野で使われるCD。空洞径は6.0〜6.5Å。コレステロールなどを強く取り込みます。",key:"β-CD（7糖）"},
+    desc:"最も広く産業・医薬品分野で使われるCD。空洞径は6.0〜6.5Å。えごま油の脂肪酸鎖にはやや狭いです。",key:"β-CD（7糖）"},
   {name:"γ-シクロデキストリン（γ-CD）",formula:"C₄₈H₈₀O₄₀ — ブドウ糖8個が環状に結合",sugar:8,
-    desc:"私たちが使用するγ-CDは、3種類の中で最も空洞が広く、えごま油に含まれるα-リノレン酸（オメガ3）の脂肪酸鎖の取り込みに適したサイズです。",key:"γ-CD（8糖）"}
+    desc:"吉清研究室が使用するγ-CDは、3種類の中で最も空洞が広く、えごま油に含まれるα-リノレン酸（オメガ3）の脂肪酸鎖をすっぽり包み込める唯一のサイズです。",key:"γ-CD（8糖）"}
 ];
 
 // ── Three.js shared materials ──
