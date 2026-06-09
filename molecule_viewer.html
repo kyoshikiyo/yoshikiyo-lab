@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脂肪酸3Dビューアー — 吉清研究グループ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#1D9E75;--teal-lt:#E1F5EE;--teal-dk:#085041;
+  --purple:#534AB7;--purple-lt:#EEEDFE;--purple-dk:#3C3489;
+  --amber:#BA7517;--amber-lt:#FAEEDA;--amber-dk:#633806;
+  --border:#e0ded8;--muted:#6b6b68;--text:#1a1a18;--white:#fff;--bg:#fafaf8;
+  --radius:10px;--radius-lg:16px;
+}
+body{font-family:"Noto Sans JP",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px}
+header{background:var(--white);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-size:13px;color:var(--muted)}.logo strong{color:var(--text);font-weight:500}
+.back-link{font-size:13px;color:var(--teal);text-decoration:none}
+.back-link:hover{text-decoration:underline}
+main{max-width:800px;margin:0 auto;padding:32px 20px 64px}
+h1{font-size:22px;font-weight:700;margin-bottom:6px;letter-spacing:-0.02em}
+.subtitle{font-size:14px;color:var(--muted);margin-bottom:24px}
+.mol-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.mol-tab{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:7px 16px;font-size:13px;font-family:inherit;color:var(--muted);cursor:pointer;transition:all .15s}
+.mol-tab:hover{border-color:var(--purple);color:var(--purple)}
+.mol-tab.active{background:var(--purple-lt);border-color:var(--purple);color:var(--purple-dk);font-weight:500}
+.mol-tab.sat.active{background:#F5F4F0;border-color:#888;color:#2C2C2A}
+.mol-tab.o9.active{background:var(--amber-lt);border-color:var(--amber);color:var(--amber-dk)}
+.mol-tab.o6.active{background:#FFE8E8;border-color:#C0392B;color:#8B0000}
+.mol-tab.o3.active{background:var(--teal-lt);border-color:var(--teal);color:var(--teal-dk)}
+.viewer-wrap{position:relative;background:#0f0f12;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:16px}
+canvas{width:100%;display:block;touch-action:none}
+.viewer-overlay{position:absolute;top:14px;left:14px;background:rgba(15,15,18,.72);backdrop-filter:blur(6px);border-radius:10px;padding:10px 16px;color:#fff}
+.vo-label{font-size:11px;opacity:.55;margin-bottom:2px;font-family:"DM Mono",monospace}
+.vo-val{font-size:22px;font-weight:700;line-height:1}
+.vo-unit{font-size:11px;opacity:.6;margin-left:3px}
+.viewer-hint{position:absolute;bottom:12px;right:14px;font-size:11px;color:rgba(255,255,255,.35);font-family:"DM Mono",monospace;pointer-events:none}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px;font-size:12px;color:var(--muted)}
+.leg{display:flex;align-items:center;gap:5px}
+.leg-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.leg-bar{width:18px;height:4px;border-radius:2px;flex-shrink:0}
+.info-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:18px}
+.ic-name{font-size:15px;font-weight:500;margin-bottom:3px}
+.ic-sub{font-family:"DM Mono",monospace;font-size:12px;color:var(--muted);margin-bottom:10px}
+.ic-desc{font-size:14px;line-height:1.7}
+.compare{margin-top:6px}
+.compare h3{font-size:14px;font-weight:500;margin-bottom:12px;color:var(--muted)}
+.cmp-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.cmp-label{font-size:12px;width:190px;flex-shrink:0;line-height:1.35}
+.cmp-label.hi{font-weight:500;color:var(--teal-dk)}
+.cmp-bar-bg{flex:1;background:#F5F4F0;border-radius:4px;height:8px;overflow:hidden}
+.cmp-bar{height:100%;border-radius:4px;transition:width .5s ease}
+.cmp-num{font-family:"DM Mono",monospace;font-size:12px;color:var(--muted);width:32px;text-align:right;flex-shrink:0}
+.callout{border-radius:var(--radius);padding:14px 18px;margin-top:20px}
+.callout-teal{background:var(--teal-lt);border-left:3px solid var(--teal)}
+.callout-tag{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--teal-dk)}
+.callout p{font-size:14px;line-height:1.7;color:var(--teal-dk)}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><strong>吉清研究グループ</strong> — 島根大学</div>
+  <a class="back-link" href="./explainer.html">← 解説ページへ</a>
+</header>
+<main>
+  <h1>脂肪酸の3D分子ビューアー</h1>
+  <p class="subtitle">実際の分子データから生成。ドラッグで回転、スクロールで拡大縮小できます。</p>
+  <div class="mol-tabs" id="molTabs">
+    <button class="mol-tab sat active" onclick="selectMol(0,this)">C16:0 パルミチン酸</button>
+    <button class="mol-tab sat"        onclick="selectMol(1,this)">C18:0 飽和脂肪酸</button>
+    <button class="mol-tab o9"         onclick="selectMol(2,this)">C18:1 オメガ9</button>
+    <button class="mol-tab o6"         onclick="selectMol(3,this)">C18:2 オメガ6</button>
+    <button class="mol-tab o3"         onclick="selectMol(4,this)">C18:3 オメガ3 ★</button>
+  </div>
+  <div class="viewer-wrap">
+    <canvas id="mol-canvas" height="420"></canvas>
+    <div class="viewer-overlay">
+      <div class="vo-label">二重結合</div>
+      <div><span class="vo-val" id="dbl-count">0</span><span class="vo-unit">か所</span></div>
+    </div>
+    <div class="viewer-hint">ドラッグ：回転　スクロール：ズーム</div>
+  </div>
+  <div class="legend">
+    <div class="leg"><div class="leg-dot" style="background:#888"></div>炭素 C</div>
+    <div class="leg"><div class="leg-dot" style="background:#e84040"></div>酸素 O</div>
+    <div class="leg"><div class="leg-dot" style="background:#ddd"></div>水素 H（省略）</div>
+    <div class="leg"><div class="leg-bar" style="background:#FFD700"></div>二重結合</div>
+  </div>
+  <div class="info-card">
+    <div class="ic-name"    id="ic-name">—</div>
+    <div class="ic-sub"     id="ic-formula">—</div>
+    <div class="ic-desc"    id="ic-desc">—</div>
+  </div>
+  <div class="compare">
+    <h3>二重結合数の比較</h3>
+    <div class="cmp-row"><div class="cmp-label">C16:0 パルミチン酸<br><span style="font-size:11px;color:var(--muted)">えごま油・動物性脂肪</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
+    <div class="cmp-row"><div class="cmp-label">C18:0 飽和脂肪酸<br><span style="font-size:11px;color:var(--muted)">バター・肉の脂</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:0%;background:#aaa"></div></div><div class="cmp-num">0</div></div>
+    <div class="cmp-row"><div class="cmp-label">C18:1 オメガ9<br><span style="font-size:11px;color:var(--muted)">オリーブオイル</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:33%;background:#BA7517"></div></div><div class="cmp-num">1</div></div>
+    <div class="cmp-row"><div class="cmp-label">C18:2 オメガ6<br><span style="font-size:11px;color:var(--muted)">サラダ油</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:66%;background:#C0392B"></div></div><div class="cmp-num">2</div></div>
+    <div class="cmp-row"><div class="cmp-label hi">C18:3 オメガ3 ★<br><span style="font-size:11px;color:var(--teal)">えごま油・α-リノレン酸</span></div><div class="cmp-bar-bg"><div class="cmp-bar" style="width:100%;background:#1D9E75"></div></div><div class="cmp-num" style="color:var(--teal-dk);font-weight:500">3</div></div>
+  </div>
+  <div class="callout callout-teal">
+    <span class="callout-tag">なぜ形が大事？</span>
+    <p>二重結合が増えるほど分子が「曲がり」ます。この曲がりが細胞膜をやわらかくし、オメガ3が持つ健康効果の源です。3Dモデルを回転させて、形の違いを確かめてみてください。</p>
+  </div>
+</main>
+<script>
+const MOLDATA = {"fa":{"C18:0（飽和脂肪酸）":{"atoms":[{"id":"a1","el":"C","x":2.4234,"y":3.5833,"z":-7.3347},{"id":"a2","el":"C","x":2.1277,"y":2.3204,"z":-6.5242},{"id":"a3","el":"C","x":1.5045,"y":2.6603,"z":-5.1692},{"id":"a4","el":"H","x":3.0577,"y":1.7598,"z":-6.3695},{"id":"a5","el":"H","x":1.4484,"y":1.6701,"z":-7.0887},{"id":"a6","el":"C","x":1.2626,"y":1.3994,"z":-4.3378},{"id":"a7","el":"H","x":0.5561,"y":3.1896,"z":-5.3221},{"id":"a8","el":"H","x":2.1687,"y":3.3387,"z":-4.6201},{"id":"a9","el":"C","x":0.6716,"y":1.7391,"z":-2.9686},{"id":"a10","el":"H","x":2.2095,"y":0.8622,"z":-4.2045},{"id":"a11","el":"H","x":0.5828,"y":0.7277,"z":-4.876},{"id":"a12","el":"C","x":0.4752,"y":0.481,"z":-2.1208},{"id":"a13","el":"H","x":-0.29,"y":2.2501,"z":-3.0994},{"id":"a14","el":"H","x":1.3383,"y":2.4338,"z":-2.4432},{"id":"a15","el":"C","x":-0.0967,"y":0.8218,"z":-0.7439},{"id":"a16","el":"H","x":1.4361,"y":-0.0341,"z":-2.001},{"id":"a17","el":"H","x":-0.2001,"y":-0.2104,"z":-2.6392},{"id":"a18","el":"C","x":-0.2736,"y":-0.4334,"z":0.1123},{"id":"a19","el":"H","x":-1.0636,"y":1.3259,"z":-0.8625},{"id":"a20","el":"H","x":0.5729,"y":1.5234,"z":-0.2314},{"id":"a21","el":"C","x":-0.8444,"y":-0.0895,"z":1.4889},{"id":"a22","el":"H","x":0.6937,"y":-0.9367,"z":0.2311},{"id":"a23","el":"H","x":-0.9433,"y":-1.1358,"z":-0.3988},{"id":"a24","el":"C","x":-1.023,"y":-1.3418,"z":2.349},{"id":"a25","el":"H","x":-1.8111,"y":0.4146,"z":1.3694},{"id":"a26","el":"H","x":-0.1744,"y":0.6133,"z":1.999},{"id":"a27","el":"H","x":-0.8227,"y":-2.7472,"z":4.7132},{"id":"a28","el":"H","x":-1.5986,"y":-3.6452,"z":6.9471},{"id":"a29","el":"H","x":-1.692,"y":-1.1814,"z":6.4653},{"id":"a30","el":"H","x":-2.4395,"y":-2.0825,"z":8.7079},{"id":"a31","el":"C","x":-1.5996,"y":-0.9918,"z":3.7217},{"id":"a32","el":"C","x":-2.5578,"y":-3.127,"z":6.8232},{"id":"a33","el":"C","x":-3.1266,"y":-2.764,"z":8.194},{"id":"a34","el":"C","x":-3.3227,"y":-3.9824,"z":9.0663},{"id":"a35","el":"C","x":-1.7868,"y":-2.2403,"z":4.5854},{"id":"a36","el":"C","x":-2.3641,"y":-1.8827,"z":5.956},{"id":"a37","el":"H","x":-3.2322,"y":-3.8291,"z":6.3171},{"id":"a38","el":"H","x":-2.4571,"y":-2.943,"z":4.0757},{"id":"a39","el":"H","x":-3.3264,"y":-1.3723,"z":5.8273},{"id":"a40","el":"H","x":-4.0976,"y":-2.271,"z":8.0737},{"id":"a41","el":"H","x":-0.0558,"y":-1.8438,"z":2.4733},{"id":"a42","el":"H","x":-1.6903,"y":-2.0466,"z":1.8384},{"id":"a43","el":"H","x":-0.93,"y":-0.2892,"z":4.2326},{"id":"a44","el":"H","x":-2.5643,"y":-0.4853,"z":3.5959},{"id":"a45","el":"O","x":-3.1035,"y":-5.1356,"z":8.7338},{"id":"a46","el":"O","x":-3.7867,"y":-3.6604,"z":10.2969},{"id":"a47","el":"H","x":-3.9195,"y":-2.7027,"z":10.4281},{"id":"a48","el":"C","x":3.0699,"y":3.2425,"z":-8.6772},{"id":"a49","el":"H","x":3.0913,"y":4.2385,"z":-6.7621},{"id":"a50","el":"H","x":1.493,"y":4.1389,"z":-7.5042},{"id":"a51","el":"C","x":3.3978,"y":4.496,"z":-9.4724},{"id":"a52","el":"H","x":2.3957,"y":2.6085,"z":-9.2647},{"id":"a53","el":"H","x":3.9912,"y":2.6715,"z":-8.5129},{"id":"a54","el":"H","x":2.4934,"y":5.0761,"z":-9.6818},{"id":"a55","el":"H","x":3.8593,"y":4.2286,"z":-10.4281},{"id":"a56","el":"H","x":4.0976,"y":5.1356,"z":-8.925}],"bonds":[{"a":"a1","b":"a2","o":1},{"a":"a2","b":"a3","o":1},{"a":"a2","b":"a4","o":1},{"a":"a2","b":"a5","o":1},{"a":"a3","b":"a6","o":1},{"a":"a3","b":"a7","o":1},{"a":"a3","b":"a8","o":1},{"a":"a6","b":"a9","o":1},{"a":"a6","b":"a10","o":1},{"a":"a6","b":"a11","o":1},{"a":"a9","b":"a12","o":1},{"a":"a9","b":"a13","o":1},{"a":"a9","b":"a14","o":1},{"a":"a12","b":"a15","o":1},{"a":"a12","b":"a16","o":1},{"a":"a12","b":"a17","o":1},{"a":"a15","b":"a18","o":1},{"a":"a15","b":"a19","o":1},{"a":"a15","b":"a20","o":1},{"a":"a18","b":"a21","o":1},{"a":"a18","b":"a22","o":1},{"a":"a18","b":"a23","o":1},{"a":"a21","b":"a24","o":1},{"a":"a21","b":"a25","o":1},{"a":"a21","b":"a26","o":1},{"a":"a31","b":"a35","o":1},{"a":"a32","b":"a33","o":1},{"a":"a32","b":"a28","o":1},{"a":"a32","b":"a37","o":1},{"a":"a33","b":"a34","o":1},{"a":"a33","b":"a40","o":1},{"a":"a33","b":"a30","o":1},{"a":"a35","b":"a36","o":1},{"a":"a35","b":"a27","o":1},{"a":"a35","b":"a38","o":1},{"a":"a36","b":"a32","o":1},{"a":"a36","b":"a39","o":1},{"a":"a36","b":"a29","o":1},{"a":"a24","b":"a31","o":1},{"a":"a24","b":"a41","o":1},{"a":"a24","b":"a42","o":1},{"a":"a31","b":"a43","o":1},{"a":"a31","b":"a44","o":1},{"a":"a34","b":"a45","o":2},{"a":"a34","b":"a46","o":1},{"a":"a46","b":"a47","o":1},{"a":"a1","b":"a48","o":1},{"a":"a1","b":"a49","o":1},{"a":"a1","b":"a50","o":1},{"a":"a48","b":"a51","o":1},{"a":"a48","b":"a52","o":1},{"a":"a48","b":"a53","o":1},{"a":"a51","b":"a54","o":1},{"a":"a51","b":"a55","o":1},{"a":"a51","b":"a56","o":1}]},"C18:1 オメガ9（オレイン酸）":{"atoms":[{"id":"a1","el":"C","x":2.3762,"y":2.8815,"z":-6.7423},{"id":"a2","el":"C","x":1.3649,"y":2.4026,"z":-5.6986},{"id":"a3","el":"C","x":1.6128,"y":0.9417,"z":-5.3198},{"id":"a4","el":"H","x":0.3485,"y":2.5125,"z":-6.0959},{"id":"a5","el":"H","x":1.4326,"y":3.0315,"z":-4.8028},{"id":"a6","el":"C","x":0.5821,"y":0.4383,"z":-4.3069},{"id":"a7","el":"H","x":2.6212,"y":0.8372,"z":-4.9012},{"id":"a8","el":"H","x":1.5721,"y":0.3188,"z":-6.2219},{"id":"a9","el":"C","x":0.834,"y":-1.0287,"z":-3.9522},{"id":"a10","el":"H","x":-0.426,"y":0.5481,"z":-4.7245},{"id":"a11","el":"H","x":0.6259,"y":1.0505,"z":-3.3981},{"id":"a12","el":"C","x":-0.2251,"y":-1.5706,"z":-2.9869},{"id":"a13","el":"H","x":1.8304,"y":-1.1301,"z":-3.5033},{"id":"a14","el":"H","x":0.8359,"y":-1.6278,"z":-4.872},{"id":"a15","el":"C","x":0.02,"y":-3.025,"z":-2.6972},{"id":"a16","el":"H","x":-1.2192,"y":-1.4721,"z":-3.439},{"id":"a17","el":"H","x":-0.2253,"y":-0.9658,"z":-2.0756},{"id":"a18","el":"C","x":0.1526,"y":-3.6229,"z":-1.5025},{"id":"a19","el":"C","x":0.0515,"y":-3.0016,"z":-0.1375},{"id":"a20","el":"C","x":-0.8875,"y":-3.8159,"z":0.7589},{"id":"a21","el":"H","x":-0.3038,"y":-1.9682,"z":-0.1847},{"id":"a22","el":"H","x":1.0536,"y":-2.9805,"z":0.3068},{"id":"a23","el":"H","x":-1.4222,"y":-5.1119,"z":3.1188},{"id":"a24","el":"H","x":-2.3037,"y":-5.4356,"z":5.4364},{"id":"a25","el":"H","x":-0.9423,"y":-3.4006,"z":4.9055},{"id":"a26","el":"H","x":-1.8766,"y":-3.744,"z":7.2374},{"id":"a27","el":"C","x":-0.9809,"y":-3.2253,"z":2.1675},{"id":"a28","el":"C","x":-2.7683,"y":-4.4422,"z":5.3983},{"id":"a29","el":"C","x":-2.8779,"y":-3.8727,"z":6.8116},{"id":"a30","el":"C","x":-3.6645,"y":-4.7831,"z":7.7269},{"id":"a31","el":"C","x":-1.8483,"y":-4.1021,"z":3.0734},{"id":"a32","el":"C","x":-1.9482,"y":-3.5273,"z":4.4872},{"id":"a33","el":"H","x":-3.7723,"y":-4.5807,"z":4.9779},{"id":"a34","el":"H","x":-2.8531,"y":-4.1953,"z":2.6435},{"id":"a35","el":"H","x":-2.4105,"y":-2.5336,"z":4.4479},{"id":"a36","el":"H","x":-3.3821,"y":-2.9006,"z":6.779},{"id":"a37","el":"H","x":-0.5281,"y":-4.851,"z":0.8236},{"id":"a38","el":"H","x":-1.8889,"y":-3.8529,"z":0.3113},{"id":"a39","el":"H","x":0.0241,"y":-3.1373,"z":2.5977},{"id":"a40","el":"H","x":-1.4018,"y":-2.214,"z":2.1159},{"id":"a41","el":"O","x":-4.1536,"y":-5.8553,"z":7.4116},{"id":"a42","el":"O","x":-3.7767,"y":-4.2775,"z":8.9778},{"id":"a43","el":"H","x":-3.3382,"y":-3.4136,"z":9.093},{"id":"a44","el":"C","x":2.1321,"y":4.3395,"z":-7.1297},{"id":"a45","el":"H","x":2.3082,"y":2.2487,"z":-7.6357},{"id":"a46","el":"H","x":3.3932,"y":2.7719,"z":-6.3463},{"id":"a47","el":"C","x":3.1261,"y":4.8097,"z":-8.18},{"id":"a48","el":"H","x":2.2149,"y":4.9792,"z":-6.2434},{"id":"a49","el":"H","x":1.1146,"y":4.4562,"z":-7.5207},{"id":"a50","el":"H","x":4.1536,"y":4.7337,"z":-7.8101},{"id":"a51","el":"H","x":2.9354,"y":5.8553,"z":-8.4415},{"id":"a52","el":"H","x":3.0444,"y":4.2112,"z":-9.093},{"id":"a53","el":"H","x":0.1048,"y":-3.6601,"z":-3.5798},{"id":"a54","el":"H","x":0.359,"y":-4.6938,"z":-1.5069}],"bonds":[{"a":"a1","b":"a2","o":1},{"a":"a2","b":"a3","o":1},{"a":"a2","b":"a4","o":1},{"a":"a2","b":"a5","o":1},{"a":"a3","b":"a6","o":1},{"a":"a3","b":"a7","o":1},{"a":"a3","b":"a8","o":1},{"a":"a6","b":"a9","o":1},{"a":"a6","b":"a10","o":1},{"a":"a6","b":"a11","o":1},{"a":"a9","b":"a12","o":1},{"a":"a9","b":"a13","o":1},{"a":"a9","b":"a14","o":1},{"a":"a12","b":"a15","o":1},{"a":"a12","b":"a16","o":1},{"a":"a12","b":"a17","o":1},{"a":"a18","b":"a19","o":1},{"a":"a19","b":"a20","o":1},{"a":"a19","b":"a21","o":1},{"a":"a19","b":"a22","o":1},{"a":"a27","b":"a31","o":1},{"a":"a28","b":"a29","o":1},{"a":"a28","b":"a24","o":1},{"a":"a28","b":"a33","o":1},{"a":"a29","b":"a30","o":1},{"a":"a29","b":"a36","o":1},{"a":"a29","b":"a26","o":1},{"a":"a31","b":"a32","o":1},{"a":"a31","b":"a23","o":1},{"a":"a31","b":"a34","o":1},{"a":"a32","b":"a28","o":1},{"a":"a32","b":"a35","o":1},{"a":"a32","b":"a25","o":1},{"a":"a20","b":"a27","o":1},{"a":"a20","b":"a37","o":1},{"a":"a20","b":"a38","o":1},{"a":"a27","b":"a39","o":1},{"a":"a27","b":"a40","o":1},{"a":"a30","b":"a41","o":2},{"a":"a30","b":"a42","o":1},{"a":"a42","b":"a43","o":1},{"a":"a1","b":"a44","o":1},{"a":"a1","b":"a45","o":1},{"a":"a1","b":"a46","o":1},{"a":"a44","b":"a47","o":1},{"a":"a44","b":"a48","o":1},{"a":"a44","b":"a49","o":1},{"a":"a47","b":"a50","o":1},{"a":"a47","b":"a51","o":1},{"a":"a47","b":"a52","o":1},{"a":"a15","b":"a18","o":2},{"a":"a15","b":"a53","o":1},{"a":"a18","b":"a54","o":1}]},"C18:2 オメガ6（リノール酸）":{"atoms":[{"id":"a1","el":"C","x":-1.4936,"y":-5.5216,"z":5.1739},{"id":"a2","el":"C","x":-1.2302,"y":-4.2705,"z":4.3745},{"id":"a3","el":"C","x":-1.9995,"y":-4.2952,"z":3.0583},{"id":"a4","el":"C","x":-1.7161,"y":-3.0443,"z":2.2255},{"id":"a5","el":"C","x":-2.4397,"y":-3.087,"z":0.8762},{"id":"a6","el":"C","x":-2.1847,"y":-1.8099,"z":0.0743},{"id":"a7","el":"C","x":-2.8311,"y":-1.8591,"z":-1.3161},{"id":"a8","el":"C","x":-2.6587,"y":-0.5154,"z":-2.0299},{"id":"a9","el":"C","x":-3.1561,"y":-0.504,"z":-3.4563},{"id":"a10","el":"O","x":-0.7635,"y":-6.4976,"z":5.1749},{"id":"a11","el":"O","x":-2.6442,"y":-5.4706,"z":5.8823},{"id":"a12","el":"H","x":-0.1506,"y":-4.2118,"z":4.1921},{"id":"a13","el":"H","x":-1.489,"y":-3.3938,"z":4.979},{"id":"a14","el":"H","x":-3.0756,"y":-4.3696,"z":3.2581},{"id":"a15","el":"H","x":-1.7245,"y":-5.1919,"z":2.4892},{"id":"a16","el":"H","x":-0.6361,"y":-2.9534,"z":2.0563},{"id":"a17","el":"H","x":-2.0302,"y":-2.1549,"z":2.7855},{"id":"a18","el":"H","x":-3.5176,"y":-3.2063,"z":1.0388},{"id":"a19","el":"H","x":-2.098,"y":-3.9579,"z":0.3045},{"id":"a20","el":"H","x":-1.1037,"y":-1.6559,"z":-0.0355},{"id":"a21","el":"H","x":-2.5744,"y":-0.9495,"z":0.6325},{"id":"a22","el":"H","x":-3.8988,"y":-2.0907,"z":-1.2231},{"id":"a23","el":"H","x":-2.3723,"y":-2.6626,"z":-1.905},{"id":"a24","el":"H","x":-1.5935,"y":-0.253,"z":-2.0066},{"id":"a25","el":"H","x":-3.1999,"y":0.2552,"z":-1.4674},{"id":"a26","el":"H","x":-3.1344,"y":-4.6336,"z":5.7815},{"id":"a27","el":"C","x":-2.7498,"y":0.392,"z":-4.3787},{"id":"a28","el":"H","x":-3.8804,"y":-1.2625,"z":-3.7444},{"id":"a29","el":"C","x":-1.7695,"y":1.4763,"z":-4.0454},{"id":"a30","el":"H","x":-3.1311,"y":0.3239,"z":-5.3938},{"id":"a31","el":"C","x":-1.6075,"y":2.5835,"z":-5.0543},{"id":"a32","el":"H","x":-0.7945,"y":0.9935,"z":-3.9002},{"id":"a33","el":"H","x":-2.0835,"y":1.9419,"z":-3.1025},{"id":"a34","el":"C","x":-0.6114,"y":3.4884,"z":-4.9418},{"id":"a35","el":"H","x":-2.3075,"y":2.6528,"z":-5.8823},{"id":"a36","el":"C","x":0.3756,"y":3.4259,"z":-3.8068},{"id":"a37","el":"H","x":-0.4982,"y":4.2684,"z":-5.6902},{"id":"a38","el":"C","x":1.0966,"y":4.7146,"z":-3.4059},{"id":"a39","el":"H","x":1.1313,"y":2.6704,"z":-4.0553},{"id":"a40","el":"H","x":-0.15,"y":3.0733,"z":-2.911},{"id":"a41","el":"C","x":1.7567,"y":4.4511,"z":-2.045},{"id":"a42","el":"H","x":0.3968,"y":5.5548,"z":-3.3318},{"id":"a43","el":"H","x":1.8512,"y":4.9718,"z":-4.1582},{"id":"a44","el":"C","x":2.6343,"y":5.5829,"z":-1.5314},{"id":"a45","el":"H","x":2.3582,"y":3.5349,"z":-2.1085},{"id":"a46","el":"H","x":0.9677,"y":4.2569,"z":-1.3059},{"id":"a47","el":"C","x":3.2347,"y":5.1941,"z":-0.1849},{"id":"a48","el":"H","x":2.4507,"y":4.9285,"z":0.533},{"id":"a49","el":"H","x":3.815,"y":6.0203,"z":0.2344},{"id":"a50","el":"H","x":3.8988,"y":4.3291,"z":-0.2908},{"id":"a51","el":"H","x":2.0428,"y":6.4976,"z":-1.4182},{"id":"a52","el":"H","x":3.4402,"y":5.7916,"z":-2.2433}],"bonds":[{"a":"a1","b":"a2","o":1},{"a":"a2","b":"a3","o":1},{"a":"a3","b":"a4","o":1},{"a":"a4","b":"a5","o":1},{"a":"a5","b":"a6","o":1},{"a":"a6","b":"a7","o":1},{"a":"a7","b":"a8","o":1},{"a":"a8","b":"a9","o":1},{"a":"a1","b":"a10","o":2},{"a":"a1","b":"a11","o":1},{"a":"a2","b":"a12","o":1},{"a":"a2","b":"a13","o":1},{"a":"a3","b":"a14","o":1},{"a":"a3","b":"a15","o":1},{"a":"a4","b":"a16","o":1},{"a":"a4","b":"a17","o":1},{"a":"a5","b":"a18","o":1},{"a":"a5","b":"a19","o":1},{"a":"a6","b":"a20","o":1},{"a":"a6","b":"a21","o":1},{"a":"a7","b":"a22","o":1},{"a":"a7","b":"a23","o":1},{"a":"a8","b":"a24","o":1},{"a":"a8","b":"a25","o":1},{"a":"a11","b":"a26","o":1},{"a":"a9","b":"a27","o":2},{"a":"a9","b":"a28","o":1},{"a":"a27","b":"a29","o":1},{"a":"a27","b":"a30","o":1},{"a":"a29","b":"a31","o":1},{"a":"a29","b":"a32","o":1},{"a":"a29","b":"a33","o":1},{"a":"a31","b":"a34","o":2},{"a":"a31","b":"a35","o":1},{"a":"a34","b":"a36","o":1},{"a":"a34","b":"a37","o":1},{"a":"a38","b":"a36","o":1},{"a":"a36","b":"a39","o":1},{"a":"a36","b":"a40","o":1},{"a":"a38","b":"a41","o":1},{"a":"a38","b":"a42","o":1},{"a":"a38","b":"a43","o":1},{"a":"a44","b":"a41","o":1},{"a":"a41","b":"a45","o":1},{"a":"a41","b":"a46","o":1},{"a":"a47","b":"a44","o":1},{"a":"a47","b":"a48","o":1},{"a":"a47","b":"a49","o":1},{"a":"a47","b":"a50","o":1},{"a":"a44","b":"a51","o":1},{"a":"a44","b":"a52","o":1}]},"C18:3 オメガ3（α-リノレン酸）":{"atoms":[{"id":"a1","el":"C","x":6.5476,"y":-4.1302,"z":-1.4964},{"id":"a2","el":"C","x":5.1572,"y":-3.5719,"z":-1.274},{"id":"a3","el":"O","x":6.7267,"y":-5.2561,"z":-1.945},{"id":"a4","el":"C","x":5.0634,"y":-2.1578,"z":-0.7106},{"id":"a5","el":"C","x":3.6123,"y":-1.7086,"z":-0.5317},{"id":"a6","el":"C","x":3.5621,"y":-0.2888,"z":0.034},{"id":"a7","el":"C","x":2.128,"y":0.1955,"z":0.2269},{"id":"a8","el":"C","x":2.1031,"y":1.6183,"z":0.7938},{"id":"a9","el":"C","x":0.665,"y":2.0947,"z":0.9836},{"id":"a10","el":"C","x":0.5673,"y":3.4917,"z":1.5401},{"id":"a11","el":"O","x":7.5875,"y":-3.3364,"z":-1.1802},{"id":"a12","el":"C","x":-0.6071,"y":4.1035,"z":1.7839},{"id":"a13","el":"C","x":-1.9239,"y":3.4342,"z":1.5172},{"id":"a14","el":"C","x":-3.141,"y":4.2538,"z":1.8437},{"id":"a15","el":"C","x":-4.3891,"y":3.7802,"z":1.6551},{"id":"a16","el":"C","x":-4.6507,"y":2.4018,"z":1.1059},{"id":"a17","el":"C","x":-6.1011,"y":2.0437,"z":0.9633},{"id":"a18","el":"C","x":-6.5171,"y":0.8544,"z":0.4894},{"id":"a19","el":"C","x":-5.5889,"y":-0.2479,"z":0.0503},{"id":"a20","el":"C","x":-6.3305,"y":-1.4815,"z":-0.4412},{"id":"a21","el":"H","x":4.6451,"y":-4.2612,"z":-0.5923},{"id":"a22","el":"H","x":4.6451,"y":-3.6035,"z":-2.243},{"id":"a23","el":"H","x":5.575,"y":-1.4579,"z":-1.3828},{"id":"a24","el":"H","x":5.575,"y":-2.1119,"z":0.2587},{"id":"a25","el":"H","x":3.0907,"y":-2.3967,"z":0.1447},{"id":"a26","el":"H","x":3.0907,"y":-1.7431,"z":-1.4959},{"id":"a27","el":"H","x":4.0889,"y":0.3935,"z":-0.6441},{"id":"a28","el":"H","x":4.0889,"y":-0.2597,"z":0.9955},{"id":"a29","el":"H","x":1.5974,"y":-0.4828,"z":0.9065},{"id":"a30","el":"H","x":1.5974,"y":0.1704,"z":-0.7329},{"id":"a31","el":"H","x":2.6331,"y":2.296,"z":0.1131},{"id":"a32","el":"H","x":2.6331,"y":1.6423,"z":1.7539},{"id":"a33","el":"H","x":0.1527,"y":1.401,"z":1.6618},{"id":"a34","el":"H","x":0.1527,"y":2.0574,"z":0.0141},{"id":"a35","el":"H","x":1.4911,"y":4.0253,"z":1.7527},{"id":"a36","el":"H","x":7.3775,"y":-2.4544,"z":-0.8288},{"id":"a37","el":"H","x":-0.6011,"y":5.1131,"z":2.1861},{"id":"a38","el":"H","x":-1.9631,"y":2.5124,"z":2.1109},{"id":"a39","el":"H","x":-1.9631,"y":3.1732,"z":0.4523},{"id":"a40","el":"H","x":-3.011,"y":5.2561,"z":2.243},{"id":"a41","el":"H","x":-5.2344,"y":4.4148,"z":1.9079},{"id":"a42","el":"H","x":-4.182,"y":1.6692,"z":1.7746},{"id":"a43","el":"H","x":-4.182,"y":2.3297,"z":0.1166},{"id":"a44","el":"H","x":-6.849,"y":2.7766,"z":1.2553},{"id":"a45","el":"H","x":-7.5875,"y":0.6723,"z":0.4169},{"id":"a46","el":"H","x":-4.9451,"y":-0.5414,"z":0.8878},{"id":"a47","el":"H","x":-4.9451,"y":0.1149,"z":-0.7596},{"id":"a48","el":"H","x":-6.9632,"y":-1.9028,"z":0.3468},{"id":"a49","el":"H","x":-5.6148,"y":-2.2516,"z":-0.748},{"id":"a50","el":"H","x":-6.9632,"y":-1.2456,"z":-1.303}],"bonds":[{"a":"a1","b":"a2","o":1},{"a":"a1","b":"a3","o":2},{"a":"a2","b":"a4","o":1},{"a":"a4","b":"a5","o":1},{"a":"a5","b":"a6","o":1},{"a":"a6","b":"a7","o":1},{"a":"a7","b":"a8","o":1},{"a":"a8","b":"a9","o":1},{"a":"a9","b":"a10","o":1},{"a":"a1","b":"a11","o":1},{"a":"a12","b":"a10","o":2},{"a":"a13","b":"a12","o":1},{"a":"a14","b":"a13","o":1},{"a":"a15","b":"a14","o":2},{"a":"a16","b":"a15","o":1},{"a":"a17","b":"a16","o":1},{"a":"a18","b":"a17","o":2},{"a":"a19","b":"a18","o":1},{"a":"a20","b":"a19","o":1},{"a":"a2","b":"a21","o":1},{"a":"a2","b":"a22","o":1},{"a":"a4","b":"a23","o":1},{"a":"a4","b":"a24","o":1},{"a":"a5","b":"a25","o":1},{"a":"a5","b":"a26","o":1},{"a":"a6","b":"a27","o":1},{"a":"a6","b":"a28","o":1},{"a":"a7","b":"a29","o":1},{"a":"a7","b":"a30","o":1},{"a":"a8","b":"a31","o":1},{"a":"a8","b":"a32","o":1},{"a":"a9","b":"a33","o":1},{"a":"a9","b":"a34","o":1},{"a":"a10","b":"a35","o":1},{"a":"a11","b":"a36","o":1},{"a":"a12","b":"a37","o":1},{"a":"a13","b":"a38","o":1},{"a":"a13","b":"a39","o":1},{"a":"a14","b":"a40","o":1},{"a":"a15","b":"a41","o":1},{"a":"a16","b":"a42","o":1},{"a":"a16","b":"a43","o":1},{"a":"a17","b":"a44","o":1},{"a":"a18","b":"a45","o":1},{"a":"a19","b":"a46","o":1},{"a":"a19","b":"a47","o":1},{"a":"a20","b":"a48","o":1},{"a":"a20","b":"a49","o":1},{"a":"a20","b":"a50","o":1}]},"C16:0（パルミチン酸）":{"atoms":[{"id":"a1","el":"C","x":2.7164,"y":4.1364,"z":-8.5834},{"id":"a2","el":"C","x":2.5562,"y":2.8657,"z":-7.7642},{"id":"a3","el":"H","x":3.4049,"y":4.8337,"z":-8.0953},{"id":"a4","el":"H","x":1.7541,"y":4.6408,"z":-8.7174},{"id":"a5","el":"H","x":3.1173,"y":3.9008,"z":-9.5742},{"id":"a6","el":"C","x":1.9966,"y":3.164,"z":-6.3737},{"id":"a7","el":"H","x":3.5297,"y":2.3696,"z":-7.6755},{"id":"a8","el":"H","x":1.8881,"y":2.1775,"z":-8.2949},{"id":"a9","el":"C","x":1.8353,"y":1.8846,"z":-5.5508},{"id":"a10","el":"H","x":1.0252,"y":3.6645,"z":-6.4687},{"id":"a11","el":"H","x":2.6664,"y":3.8562,"z":-5.849},{"id":"a12","el":"C","x":1.2711,"y":2.1879,"z":-4.1621},{"id":"a13","el":"H","x":2.807,"y":1.3855,"z":-5.4524},{"id":"a14","el":"H","x":1.1669,"y":1.1915,"z":-6.0759},{"id":"a15","el":"C","x":1.1051,"y":0.9127,"z":-3.3336},{"id":"a16","el":"H","x":0.3006,"y":2.6891,"z":-4.2624},{"id":"a17","el":"H","x":1.9399,"y":2.8814,"z":-3.6378},{"id":"a18","el":"C","x":0.5329,"y":1.2251,"z":-1.95},{"id":"a19","el":"H","x":2.076,"y":0.414,"z":-3.2269},{"id":"a20","el":"H","x":0.4393,"y":0.217,"z":-3.8586},{"id":"a21","el":"C","x":0.3601,"y":-0.0438,"z":-1.1133},{"id":"a22","el":"H","x":-0.4365,"y":1.7266,"z":-2.0596},{"id":"a23","el":"H","x":1.1991,"y":1.9215,"z":-1.4264},{"id":"a24","el":"C","x":-0.2223,"y":0.28,"z":0.2636},{"id":"a25","el":"H","x":1.33,"y":-0.5421,"z":-0.9955},{"id":"a26","el":"H","x":-0.3022,"y":-0.7432,"z":-1.6378},{"id":"a27","el":"C","x":-0.4014,"y":-0.9816,"z":1.1098},{"id":"a28","el":"H","x":-1.1908,"y":0.7805,"z":0.1428},{"id":"a29","el":"H","x":0.4401,"y":0.9808,"z":0.7863},{"id":"a30","el":"H","x":-0.2075,"y":-2.3969,"z":3.4726},{"id":"a31","el":"H","x":-0.9879,"y":-3.3085,"z":5.7094},{"id":"a32","el":"H","x":-1.1215,"y":-0.8473,"z":5.2205},{"id":"a33","el":"H","x":-1.9092,"y":-1.7596,"z":7.4497},{"id":"a34","el":"C","x":-0.9938,"y":-0.6465,"z":2.4804},{"id":"a35","el":"C","x":-1.9668,"y":-2.8293,"z":5.5964},{"id":"a36","el":"C","x":-2.5784,"y":-2.4991,"z":6.9958},{"id":"a37","el":"C","x":-2.851,"y":-3.6318,"z":8.0804},{"id":"a38","el":"C","x":-1.177,"y":-1.9025,"z":3.3375},{"id":"a39","el":"C","x":-1.7783,"y":-1.5639,"z":4.711},{"id":"a40","el":"H","x":-2.6119,"y":-3.5274,"z":5.0505},{"id":"a41","el":"H","x":-1.8317,"y":-2.6098,"z":2.8144},{"id":"a42","el":"H","x":-2.7446,"y":-1.0646,"z":4.5635},{"id":"a43","el":"H","x":-3.5297,"y":-1.99,"z":6.7995},{"id":"a44","el":"H","x":0.5675,"y":-1.479,"z":1.2388},{"id":"a45","el":"H","x":-1.06,"y":-1.6855,"z":0.5867},{"id":"a46","el":"H","x":-0.3357,"y":0.0597,"z":3.0011},{"id":"a47","el":"H","x":-1.9621,"y":-0.1484,"z":2.3485},{"id":"a48","el":"O","x":-2.785,"y":-4.8337,"z":7.8975},{"id":"a49","el":"O","x":-3.2347,"y":-3.0728,"z":9.3179},{"id":"a50","el":"H","x":-3.3228,"y":-2.1165,"z":9.5742}],"bonds":[{"a":"a1","b":"a2","o":1},{"a":"a1","b":"a3","o":1},{"a":"a1","b":"a4","o":1},{"a":"a1","b":"a5","o":1},{"a":"a2","b":"a6","o":1},{"a":"a2","b":"a7","o":1},{"a":"a2","b":"a8","o":1},{"a":"a6","b":"a9","o":1},{"a":"a6","b":"a10","o":1},{"a":"a6","b":"a11","o":1},{"a":"a9","b":"a12","o":1},{"a":"a9","b":"a13","o":1},{"a":"a9","b":"a14","o":1},{"a":"a12","b":"a15","o":1},{"a":"a12","b":"a16","o":1},{"a":"a12","b":"a17","o":1},{"a":"a15","b":"a18","o":1},{"a":"a15","b":"a19","o":1},{"a":"a15","b":"a20","o":1},{"a":"a18","b":"a21","o":1},{"a":"a18","b":"a22","o":1},{"a":"a18","b":"a23","o":1},{"a":"a21","b":"a24","o":1},{"a":"a21","b":"a25","o":1},{"a":"a21","b":"a26","o":1},{"a":"a24","b":"a27","o":1},{"a":"a24","b":"a28","o":1},{"a":"a24","b":"a29","o":1},{"a":"a34","b":"a38","o":1},{"a":"a35","b":"a36","o":1},{"a":"a35","b":"a31","o":1},{"a":"a35","b":"a40","o":1},{"a":"a36","b":"a37","o":1},{"a":"a36","b":"a43","o":1},{"a":"a36","b":"a33","o":1},{"a":"a38","b":"a39","o":1},{"a":"a38","b":"a30","o":1},{"a":"a38","b":"a41","o":1},{"a":"a39","b":"a35","o":1},{"a":"a39","b":"a42","o":1},{"a":"a39","b":"a32","o":1},{"a":"a27","b":"a34","o":1},{"a":"a27","b":"a44","o":1},{"a":"a27","b":"a45","o":1},{"a":"a34","b":"a46","o":1},{"a":"a34","b":"a47","o":1},{"a":"a37","b":"a48","o":2},{"a":"a37","b":"a49","o":1},{"a":"a49","b":"a50","o":1}]}}};
+const FA_INFO = [
+  {name:"C16:0 パルミチン酸",formula:"CH₃-(CH₂)₁₄-COOH",dbl:0,
+    desc:"炭素16個の飽和脂肪酸。えごま油にも少量含まれるほか、動物性脂肪・パーム油に多く存在します。二重結合がなくまっすぐな形で、細胞膜の構成成分としても重要です。",key:"C16:0（パルミチン酸）"},
+  {name:"C18:0 ステアリン酸（飽和脂肪酸）",formula:"CH₃-(CH₂)₁₆-COOH",dbl:0,
+    desc:"二重結合がまったくない炭素18個の鎖状分子。バターや肉の脂に多く含まれます。直線的な形が分子同士をきっちり並べやすく、常温で固体になりやすいです。",key:"C18:0（飽和脂肪酸）"},
+  {name:"C18:1 オレイン酸（オメガ9）",formula:"CH₃-(CH₂)₇-CH=CH-(CH₂)₇-COOH",dbl:1,
+    desc:"二重結合が1か所。オリーブオイルに豊富。1か所の曲がりで常温では液体のままでいられます。",key:"C18:1 オメガ9（オレイン酸）"},
+  {name:"C18:2 リノール酸（オメガ6）",formula:"CH₃-(CH₂)₄-(CH=CH-CH₂)₂-(CH₂)₆-COOH",dbl:2,
+    desc:"二重結合が2か所。サラダ油・コーン油に多い必須脂肪酸。現代の食事では摂りすぎになりがちです。",key:"C18:2 オメガ6（リノール酸）"},
+  {name:"C18:3 α-リノレン酸（オメガ3）",formula:"CH₃-CH₂-(CH=CH-CH₂)₃-(CH₂)₆-COOH",dbl:3,
+    desc:"二重結合が3か所。えごま油に60%以上含まれます。体内でDHA・EPAに変換され、脳や血管の健康に深く関わります。吉清研究グループではこの分子の吸収率を高める研究をしています。",key:"C18:3 オメガ3（α-リノレン酸）"}
+];
+const canvas=document.getElementById('mol-canvas');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setClearColor(0x0f0f12);
+const scene=new THREE.Scene();
+scene.add(new THREE.AmbientLight(0xffffff,.55));
+const dl=new THREE.DirectionalLight(0xffffff,.9); dl.position.set(5,10,8); scene.add(dl);
+const dl2=new THREE.DirectionalLight(0x8888ff,.3); dl2.position.set(-5,-5,-5); scene.add(dl2);
+const camera=new THREE.PerspectiveCamera(45,1,.1,500);
+const camZ={z:22}; camera.position.z=camZ.z;
+const matC=new THREE.MeshPhongMaterial({color:0x808080,shininess:60});
+const matO=new THREE.MeshPhongMaterial({color:0xe84040,shininess:80});
+const matH=new THREE.MeshPhongMaterial({color:0xdddddd,shininess:40,transparent:true,opacity:.4});
+const matB=new THREE.MeshPhongMaterial({color:0x555555,shininess:30});
+const matD=new THREE.MeshPhongMaterial({color:0xFFD700,shininess:100,emissive:0x886600});
+function amat(el){return el==='O'?matO:el==='H'?matH:matC;}
+function ar(el){return(el==='O'?.38:el==='H'?.22:.32)*.82*2;}
+let molGroup=null;
+function buildMol(mol){
+  if(molGroup){scene.remove(molGroup);molGroup.traverse(o=>{if(o.geometry)o.geometry.dispose();});}
+  molGroup=new THREE.Group();
+  const byId={};
+  mol.atoms.forEach(a=>byId[a.id]=a);
+  mol.atoms.forEach(a=>{
+    if(a.el==='H') return;
+    const m=new THREE.Mesh(new THREE.SphereGeometry(ar(a.el),12,10),amat(a.el));
+    m.position.set(a.x*.82,a.y*.82,a.z*.82); molGroup.add(m);
+  });
+  mol.bonds.forEach(b=>{
+    const aA=byId[b.a],aB=byId[b.b];
+    if(!aA||!aB||aA.el==='H'||aB.el==='H') return;
+    const vA=new THREE.Vector3(aA.x*.82,aA.y*.82,aA.z*.82);
+    const vB=new THREE.Vector3(aB.x*.82,aB.y*.82,aB.z*.82);
+    const mid=vA.clone().add(vB).multiplyScalar(.5);
+    const dir=vB.clone().sub(vA); const len=dir.length();
+    if(b.o===2){
+      const up=new THREE.Vector3(0,1,0);
+      const ax=Math.abs(dir.clone().normalize().dot(up))>.9?new THREE.Vector3(1,0,0):up;
+      const off=new THREE.Vector3().crossVectors(dir.normalize(),ax).normalize().multiplyScalar(.17);
+      [-1,1].forEach(s=>{
+        const c=new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,len,8),matD);
+        c.position.copy(mid).addScaledVector(off,s);
+        c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.clone().normalize());
+        molGroup.add(c);
+      });
+    } else {
+      const c=new THREE.Mesh(new THREE.CylinderGeometry(.09,.09,len,8),matB);
+      c.position.copy(mid);
+      c.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.clone().normalize());
+      molGroup.add(c);
+    }
+  });
+  molGroup.rotation.set(.2,.3,0); scene.add(molGroup);
+}
+let drag=false,px=0,py=0,autoRot=true;
+canvas.addEventListener('mousedown',e=>{drag=true;px=e.clientX;py=e.clientY;autoRot=false;});
+window.addEventListener('mouseup',()=>drag=false);
+window.addEventListener('mousemove',e=>{
+  if(!drag||!molGroup) return;
+  molGroup.rotation.y+=(e.clientX-px)*.008; molGroup.rotation.x+=(e.clientY-py)*.008;
+  px=e.clientX; py=e.clientY;
+});
+canvas.addEventListener('wheel',e=>{e.preventDefault();camZ.z=Math.max(8,Math.min(50,camZ.z+e.deltaY*.04));},{passive:false});
+let tx=0,ty=0,pd=0;
+canvas.addEventListener('touchstart',e=>{autoRot=false;if(e.touches.length===1){tx=e.touches[0].clientX;ty=e.touches[0].clientY;}if(e.touches.length===2){const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;pd=Math.sqrt(dx*dx+dy*dy);}},{passive:true});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(e.touches.length===1&&molGroup){molGroup.rotation.y+=(e.touches[0].clientX-tx)*.01;molGroup.rotation.x+=(e.touches[0].clientY-ty)*.01;tx=e.touches[0].clientX;ty=e.touches[0].clientY;}if(e.touches.length===2){const dx=e.touches[0].clientX-e.touches[1].clientX,dy=e.touches[0].clientY-e.touches[1].clientY;const d=Math.sqrt(dx*dx+dy*dy);camZ.z=Math.max(8,Math.min(50,camZ.z-(d-pd)*.05));pd=d;}},{passive:false});
+function resize(){const w=canvas.parentElement.clientWidth,h=Math.min(w*.6,460);renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();}
+window.addEventListener('resize',resize); resize();
+function selectMol(idx,btn){
+  document.querySelectorAll('.mol-tab').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  const info=FA_INFO[idx];
+  buildMol(MOLDATA.fa[info.key]);
+  document.getElementById('dbl-count').textContent=info.dbl;
+  document.getElementById('ic-name').textContent=info.name;
+  document.getElementById('ic-formula').textContent=info.formula;
+  document.getElementById('ic-desc').textContent=info.desc;
+}
+(function anim(){requestAnimationFrame(anim);if(autoRot&&molGroup)molGroup.rotation.y+=.005;camera.position.z=camZ.z;renderer.render(scene,camera);})();
+selectMol(0,null);
+</script>
+</body>
+</html>
