@@ -120,8 +120,11 @@ canvas{width:100%;display:block;touch-action:none}
   main{padding:20px 14px 56px}
   .page-title{font-size:18px}
   .page-sub{font-size:13px}
-  .cat-tabs{padding:0 2px}
-  .cat-tab{padding:10px 12px 8px;font-size:12px}
+  .cat-tabs{flex-direction:column;border-bottom:none;gap:4px;margin-bottom:16px}
+  .cat-tab{border-bottom:none!important;border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:14px;text-align:left;width:100%}
+  .cat-tab.active{background:var(--purple-lt);border-color:var(--purple)}
+  .mol-chips{gap:6px}
+  .mol-chip{font-size:12px;padding:6px 12px}
   .cd-compare{grid-template-columns:1fr 1fr}
   .photo-grid{grid-template-columns:1fr}
   .cmp-label{width:130px}
@@ -491,6 +494,18 @@ function switchCat(name,btn){
 // ── Init ──
 selectFA(0,null);
 selectCD(2,null);
+</script>
+
+<script>
+// iframeの高さを親ページに通知
+function notifyHeight() {
+  const h = document.body.scrollHeight;
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: 'iframeHeight', height: h }, '*');
+  }
+}
+new ResizeObserver(notifyHeight).observe(document.body);
+notifyHeight();
 </script>
 </body>
 </html>
