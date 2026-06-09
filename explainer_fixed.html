@@ -329,7 +329,17 @@
 
   /* ── Responsive ── */
   @media (max-width: 520px) {
-    .tab-nav button { padding: 12px 12px 10px; font-size: 13px; }
+    body { overflow-x: hidden; }
+    .hero { padding: 40px 20px 32px; }
+    .hero h1 { font-size: 26px; }
+    .hero-sub { font-size: 14px; }
+    .tab-nav { padding: 0 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .tab-nav button { padding: 12px 12px 10px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
+    main { padding: 24px 16px 60px; }
+    .fig svg { font-size: 11px; }
+    iframe[src="molecule_viewer.html"] { height: 520px; }
+    iframe[src="molecules.html"] { height: 720px; }
+  }
     .flow { gap: 6px; }
     .flow-arrow { display: none; }
     .flow-item { min-width: calc(50% - 6px); }
