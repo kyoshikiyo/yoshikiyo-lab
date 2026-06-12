@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDL910SN3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GNDL910SN3');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 03 — Enhanced Bioavailability of α-Linolenic Acid | Yoshikiyo Research Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744; --navy-dark: #111b33; --slate: #4a5568; --slate-light: #718096;
+  --gold: #b8965a; --gold-light: #d4a96a; --cream: #f8f6f1; --white: #ffffff;
+  --border: #d1d5db; --border-light: #e5e7eb; --text: #1f2937; --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,39,68,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(184,150,90,0.3); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+.hero { min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%); display: flex; align-items: flex-end; padding-top: 64px; }
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+.result-list { list-style: none; margin: 1rem 0 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.result-list li { display: flex; gap: 1rem; align-items: flex-start; font-size: 0.88rem; color: var(--slate); line-height: 1.8; }
+.result-list li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.figure-mock { height: 220px; background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; position: relative; }
+.figure-mock::before { content: ''; width: 60px; height: 60px; border: 2px dashed rgba(44,74,138,0.3); border-radius: 50%; }
+.figure-mock-icon { position: absolute; font-size: 2rem; opacity: 0.3; }
+.figure-num { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.25s; margin-top: 2rem; }
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+footer { background: var(--navy-dark); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index_en.html" class="nav-logo">Yoshikiyo Research Group <span>島根大学 吉清研究グループ</span></a>
+    <a href="index_en.html#research" class="nav-back">← Back to Research</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 03 / Research</div>
+    <h1>Enhanced Bioavailability of α-Linolenic Acid</h1>
+  </div>
+</div>
+<div class="content">
+  <div class="section">
+    <h2><span></span>Background</h2>
+    <p>Cyclodextrins were known to form inclusion complexes with free fatty acids, protecting them from oxidation. As an application of this principle, we prepared inclusion complexes of γ-CD with perilla oil and examined their <strong>effect on bioavailability</strong> through animal studies using rats and mice.</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Methods and Results</h2>
+    <p><strong>Step 1: Discovery of enhanced absorption via inclusion complexes</strong></p>
+    <p>Comparing a group given perilla oil alone with a group given the <strong>inclusion complex</strong> with γ-CD, we found that the inclusion complex group showed <strong>significantly increased plasma concentrations of α-linolenic acid and EPA</strong>, alongside a decrease in the omega-6 fatty acid arachidonic acid. This was the first demonstration that encapsulation with γ-CD enhances the bioavailability of perilla oil.</p>
+    <p><strong>Step 2: Clarifying that the effect arises from "co-ingestion"</strong></p>
+    <p>We then added a group that ingested γ-CD and perilla oil as a simple <strong>physical mixture</strong>, rather than as a pre-formed inclusion complex, and compared it with the inclusion complex group. <strong>No significant difference was found between the inclusion complex group and the physical mixture group.</strong> This indicates that the effect of γ-CD is not due to "inclusion" (molecular encapsulation) per se, but rather that <strong>co-ingesting γ-CD itself</strong> promotes lipid absorption in the intestine. This means a comparable effect may be achievable without pre-forming an inclusion complex — an important finding for the development of functional foods.</p>
+    <p>As for how γ-CD promotes absorption, possible mechanisms include <strong>enhanced lipase-mediated triglyceride breakdown</strong> and effects on emulsion stability or intestinal interfaces, but the detailed mechanism remains under investigation.</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Figures &amp; Data</h2>
+    <div class="figures">
+      <div class="figure">
+        <img src="fig.6.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 6</strong> — Plasma fatty acid composition (% of total fatty acids) in rats after 6 weeks. Four groups were set: <strong>CTRL</strong> (standard purified diet), <strong>CD</strong> (dietary fiber replaced with γ-cyclodextrin), <strong>LP</strong> (part of the soybean oil replaced with perilla oil), and <strong>IC</strong> (all dietary fiber and part of the soybean oil replaced with powdered perilla oil complex). Values are mean ± SEM (n=9). * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001 (one-way ANOVA + Tukey HSD).</div>
+      </div>
+      <div class="figure">
+        <img src="fig.7.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 7</strong> — [Step 2] Comparison of plasma α-linolenic acid (ALA) composition (control vs. inclusion complex vs. physical mixture). Three groups: <strong>CTRL</strong> (standard purified diet), <strong>IC</strong> (perilla oil as a γ-CD inclusion complex), and <strong>PM</strong> (perilla oil and γ-CD as a physical mixture). Rats were fed for 4 weeks. Values are mean ± SEM (n=10). For ALA, the Games–Howell test was used due to unequal variances; for ARA, Tukey HSD was used. * p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001.</div>
+      </div>
+      <div class="figure">
+        <img src="fig.8.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 8</strong> — Schematic of an in vitro lipase digestion assay. The rate of triglyceride breakdown in perilla oil was measured in the presence of γ-CD. γ-CD has been shown to promote lipase-mediated release of α-linolenic acid, suggesting one part of the mechanism behind enhanced intestinal absorption.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Related Publications</h2>
+    <p>Yoshikiyo et al. (2023) Food Hydrocolloids for Health — <a href="https://doi.org/10.1016/j.fhfh.2023.100116" style="color:var(--accent)">doi:10.1016/j.fhfh.2023.100116</a></p>
+    <p>Yoshikiyo et al. (2019) Food Chemistry — <a href="http://dx.doi.org/10.1016/j.foodchem.2019.04.093" style="color:var(--accent)">doi:10.1016/j.foodchem.2019.04.093</a></p>
+    <p>Yoshikiyo et al. (2025) International Journal of Molecular Sciences — <a href="https://doi.org/10.3390/ijms26167776" style="color:var(--accent)">doi:10.3390/ijms26167776</a></p>
+  </div>
+  <a href="index_en.html#research" class="back-link">← Back to Research</a>
+</div>
+<footer>© 2025 Keisuke Yoshikiyo — Yoshikiyo Research Group, Shimane University</footer>
+</body>
+</html>

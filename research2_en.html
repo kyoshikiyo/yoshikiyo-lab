@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDL910SN3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GNDL910SN3');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 02 — Encapsulation &amp; Thermal Stability of Perilla Oil | Yoshikiyo Research Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744; --navy-dark: #111b33; --slate: #4a5568; --slate-light: #718096;
+  --gold: #b8965a; --gold-light: #d4a96a; --cream: #f8f6f1; --white: #ffffff;
+  --border: #d1d5db; --border-light: #e5e7eb; --text: #1f2937; --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,39,68,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(184,150,90,0.3); }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+.hero { min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%); display: flex; align-items: flex-end; padding-top: 64px; }
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.figure-mock { height: 220px; background: linear-gradient(135deg, #e8edf5 0%, #d1d9ea 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; position: relative; }
+.figure-mock::before { content: ''; width: 60px; height: 60px; border: 2px dashed rgba(44,74,138,0.3); border-radius: 50%; }
+.figure-mock-icon { position: absolute; font-size: 2rem; opacity: 0.3; }
+.figure-num { font-family: 'Source Code Pro', monospace; font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+.back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); text-decoration: none; font-size: 0.85rem; padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px; transition: all 0.25s; margin-top: 2rem; }
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+footer { background: var(--navy-dark); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="index_en.html" class="nav-logo">Yoshikiyo Research Group <span>島根大学 吉清研究グループ</span></a>
+    <a href="index_en.html#research" class="nav-back">← Back to Research</a>
+  </div>
+</nav>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 02 / Research</div>
+    <h1>Encapsulation &amp; Thermal Stability of Perilla Oil</h1>
+  </div>
+</div>
+<div class="content">
+  <div class="section">
+    <h2><span></span>Research Material: Perilla (Perilla frutescens)</h2>
+    <p>Perilla is an annual plant of the mint family, widely grown and naturally occurring across Asia, including Japan, Korea, and China. Oil pressed from its seeds — perilla oil — boasts one of the highest omega-3 fatty acid contents among plant oils.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;">
+      <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+        <img src="egoma-1.jpg" alt="Young perilla leaves" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">
+        <div style="padding:0.75rem 1rem;font-size:0.78rem;color:var(--slate);line-height:1.6;border-top:1px solid var(--border-light);">
+          <strong style="color:var(--navy);">Leaves</strong> — Young leaves during the growing season, with characteristic serrated edges.
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+        <img src="egoma-2.jpg" alt="Perilla seed heads just before harvest" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">
+        <div style="padding:0.75rem 1rem;font-size:0.78rem;color:var(--slate);line-height:1.6;border-top:1px solid var(--border-light);">
+          <strong style="color:var(--navy);">Seed heads just before harvest</strong> — Seeds are fully developed; oil is extracted at this stage.
+        </div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:6px;overflow:hidden;">
+        <img src="egoma-3.jpg" alt="Perilla seed heads at different maturity stages" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">
+        <div style="padding:0.75rem 1rem;font-size:0.78rem;color:var(--slate);line-height:1.6;border-top:1px solid var(--border-light);">
+          <strong style="color:var(--navy);">Comparison of seed head maturity</strong> — Seed development varies depending on harvest timing.
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="section">
+    <h2><span></span>Perilla Oil and the Diversity of Triglycerides</h2>
+    <p>Oil pressed from perilla seeds contains <strong>50–60% α-linolenic acid</strong>, an omega-3 fatty acid, making it attractive as a "healthy oil." However, like EPA and DHA, α-linolenic acid is <strong>heat-sensitive and prone to oxidation</strong>.</p>
+    <p>The main component of perilla oil is triglyceride: a molecule with three fatty acids ester-bonded to a single glycerol backbone. Depending on the combination and position (sn-1, sn-2, sn-3) of the five major fatty acids (palmitic acid, stearic acid, oleic acid, linoleic acid, and α-linolenic acid), an enormous number of distinct triglyceride species can exist. With just five fatty acids, there are mathematically 125 possible combinations — meaning that the liquid we call "perilla oil" actually contains an enormous diversity of molecules.</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Encapsulation and Powdering with γ-CD</h2>
+    <p>Previous research had shown that cyclodextrins form inclusion complexes with free fatty acids (fatty acids not bound by ester linkages), functioning as molecular capsules that protect them from oxidation.</p>
+    <p>We prepared inclusion complexes between <strong>γ-cyclodextrin (γ-CD)</strong>, made of eight glucose units, and perilla oil. As a result, we found that the complex — with relatively high thermal stability — could be recovered as a <strong>solid (powder)</strong>. This makes it possible to turn perilla oil into a powder, suppressing oxidation and making it far easier to handle as granules, tablets, powdered foods, and other food formats.</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Figures &amp; Data</h2>
+    <div class="figures">
+      <div class="figure">
+        <img src="fig.4.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 4</strong> — Schematic of a perilla oil triglyceride, showing three α-linolenic acid molecules ester-bonded at the sn-1, sn-2, and sn-3 positions of a single glycerol backbone. In reality, combinations of five fatty acids give rise to an enormous number of possible species.</div>
+      </div>
+      <div class="figure">
+        <img src="fig.5.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 5</strong> — Powder of the inclusion complex prepared from γ-CD and perilla oil. The originally liquid perilla oil is obtained as a white powder, greatly improving its handling.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Related Publications</h2>
+    <p>Yoshikiyo et al. (2019) Food Chemistry — <a href="http://dx.doi.org/10.1016/j.foodchem.2019.04.093" style="color:var(--accent)">doi:10.1016/j.foodchem.2019.04.093</a></p>
+    <p>Keisuke Yoshikiyo (2020) Journal of Industry-Academia-Government Collaboration (in Japanese) — <a href="https://doi.org/10.1241/sangakukanjournal.16.11_4" style="color:var(--accent)">doi:10.1241/sangakukanjournal.16.11_4</a></p>
+    <p>Keisuke Yoshikiyo (2026) Surface and Interface (in Japanese) — <a href="https://doi.org/10.4164/sptj.63.181" style="color:var(--accent)">doi:10.4164/sptj.63.181</a></p>
+  </div>
+  <a href="index_en.html#research" class="back-link">← Back to Research</a>
+</div>
+<footer>© 2025 Keisuke Yoshikiyo — Yoshikiyo Research Group, Shimane University</footer>
+</body>
+</html>

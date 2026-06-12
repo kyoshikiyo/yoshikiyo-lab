@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GNDL910SN3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GNDL910SN3');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEME 01 — Inclusion Chemistry of Cyclodextrins | Yoshikiyo Research Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --navy-light: #243358;
+  --navy-dark: #111b33;
+  --slate: #4a5568;
+  --slate-light: #718096;
+  --gold: #b8965a;
+  --gold-light: #d4a96a;
+  --cream: #f8f6f1;
+  --white: #ffffff;
+  --border: #d1d5db;
+  --border-light: #e5e7eb;
+  --text: #1f2937;
+  --accent: #2c4a8a;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); font-weight: 300; line-height: 1.8; }
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(26,39,68,0.97); backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(184,150,90,0.3);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.nav-logo { color: var(--white); text-decoration: none; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; letter-spacing: 0.04em; }
+.nav-logo span { display: block; font-size: 0.7rem; font-family: 'Noto Sans JP', sans-serif; font-weight: 300; color: rgba(255,255,255,0.55); letter-spacing: 0.08em; }
+.nav-back { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.06em; padding: 0.4rem 0.75rem; border: 1px solid rgba(255,255,255,0.2); border-radius: 3px; transition: all 0.2s; }
+.nav-back:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+
+.hero {
+  min-height: 40vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 100%);
+  display: flex; align-items: flex-end; padding-top: 64px;
+}
+.hero-content { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; width: 100%; }
+.hero-label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+.hero-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--white); font-weight: 600; line-height: 1.2; margin-bottom: 0.5rem; }
+.hero h1 em { display: block; font-size: 0.6em; color: rgba(255,255,255,0.5); font-style: italic; font-weight: 400; margin-top: 0.25rem; }
+
+.content { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+
+.section { margin-bottom: 4rem; }
+.section h2 { font-family: 'Noto Serif JP', serif; font-size: 1.3rem; color: var(--navy); font-weight: 600; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border-light); }
+.section h2 span { display: inline-block; width: 3px; height: 1em; background: var(--gold); margin-right: 0.75rem; vertical-align: middle; }
+.section p { font-size: 0.92rem; color: var(--slate); line-height: 2; margin-bottom: 1.25rem; }
+
+.bridge-box {
+  background: linear-gradient(135deg, #f0f4ff 0%, #e8f0eb 100%);
+  border-left: 3px solid var(--gold);
+  padding: 1.5rem 1.75rem;
+  margin: 2rem 0;
+  border-radius: 0 6px 6px 0;
+}
+.bridge-box p {
+  font-size: 0.88rem;
+  color: var(--slate);
+  line-height: 1.9;
+  margin: 0;
+}
+.bridge-box strong { color: var(--navy); font-weight: 500; }
+
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.figure { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: var(--white); }
+.figure-caption { padding: 1rem 1.25rem; font-size: 0.8rem; color: var(--slate); line-height: 1.7; border-top: 1px solid var(--border-light); }
+.figure-caption strong { color: var(--navy); font-weight: 500; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--accent); text-decoration: none; font-size: 0.85rem;
+  padding: 0.75rem 1.5rem; border: 1px solid var(--border); border-radius: 4px;
+  transition: all 0.25s; margin-top: 2rem;
+}
+.back-link:hover { background: var(--cream); border-color: var(--accent); }
+
+footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 2rem; text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index_en.html" class="nav-logo">Yoshikiyo Research Group <span>島根大学 吉清研究グループ</span></a>
+    <a href="index_en.html#research" class="nav-back">← Back to Research</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-label">THEME 01 / Research</div>
+    <h1>Inclusion Chemistry of Cyclodextrins</h1>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section">
+    <h2><span></span>What is a Cyclodextrin?</h2>
+    <p>Cyclodextrins (CDs) are naturally occurring oligosaccharides formed from glucose molecules linked in a ring. They have a capsule-like structure with a <strong>hydrophobic cavity</strong> at the center, which selectively captures various molecules and ions. This phenomenon is called "<strong>inclusion</strong>," and the resulting complex is called an "<strong>inclusion complex</strong>."</p>
+    <p>At the heart of inclusion lies <strong>intermolecular interaction</strong>. The chemistry of cyclodextrins has developed around understanding and applying forces such as hydrophobic interactions, hydrogen bonding, and van der Waals forces. Similar intermolecular interactions govern many phenomena in living organisms — enzyme reactions, receptor binding, lipid digestion and absorption — and cyclodextrin research serves as a bridge toward understanding and applying these principles.</p>
+    <p>There are three main types of cyclodextrin, distinguished by the number of glucose units: α-CD (6 units), β-CD (7 units), and γ-CD (8 units), each with a different cavity size. Relatively small molecules can be fully enclosed, while larger molecules may only be partially included — fatty acid–cyclodextrin inclusion complexes are a representative example of the latter.</p>
+    <p>Another major advantage is that cyclodextrins are <strong>edible compounds</strong>. We are advancing our research using this "edible molecular capsule."</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>A Foundation of Basic Research</h2>
+    <p>Our group previously conducted systematic studies on inclusion complex formation between α-, β-, and γ-cyclodextrins and various molecules, using <strong>NMR spectroscopy</strong> and <strong>thermodynamic analysis</strong>. We determined binding constants for inclusion complexes with organic solvents, ethylene glycol, cycloalkanols, naphthalene derivatives, and organophosphates, quantitatively clarifying the structure, stability, and selectivity of inclusion. We also studied the synthesis and molecular recognition properties of cyclodextrin derivatives, such as guanidino-modified and methylated forms.</p>
+    <p>Later, when the department's NMR instrument was decommissioned, we <strong>shifted our research focus toward applied fields</strong>. However, the molecular-level knowledge gained from this basic research — namely, which guest molecules are included by which CDs, and to what extent — remains the foundation of our current food-application research. Our choice to combine <strong>γ-CD with perilla oil</strong> is rooted directly in this accumulated basic research.</p>
+
+    <div class="bridge-box">
+      <p>Knowledge of inclusion chemistry from basic research → <strong>design of γ-CD/perilla oil inclusion complexes</strong> → <strong>discovery of enhanced bioavailability</strong>.<br>
+      A solid understanding of molecular recognition is what makes this highly original applied research possible.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Current Research Approach</h2>
+    <p>Building on this foundation in inclusion chemistry, we now experimentally examine food functionality and physiological effects. Our main analytical methods include:</p>
+    <ul style="list-style:none;margin:1rem 0 1.5rem;display:flex;flex-direction:column;gap:0.75rem;">
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">HPLC, LC-MS, GC-MS</strong> — qualitative and quantitative analysis of fatty acids, amino acids, and other compounds</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">RT-qPCR</strong> — gene expression analysis</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">Animal studies</strong> — evaluating bioavailability and organ-level effects using rats and mice</span>
+      </li>
+      <li style="display:flex;gap:1rem;align-items:flex-start;font-size:0.88rem;color:var(--slate);line-height:1.8;">
+        <span style="color:var(--gold);font-weight:700;flex-shrink:0;">✓</span>
+        <span><strong style="color:var(--navy)">Statistical analysis (R, Python)</strong> — analysis and visualization of experimental data</span>
+      </li>
+    </ul>
+    <p>Understanding the basic interaction of "enclosing and being enclosed" at the molecular level provides a bridge to food science and nutrition.</p>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Figures &amp; Data</h2>
+    <div class="figures">
+      <div class="figure">
+        <img src="fig.1.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 1</strong> — Schematic of benzene included within the cavity of α-cyclodextrin. Six glucose units form a ring, and the guest molecule is captured within the central hydrophobic cavity.</div>
+      </div>
+      <div class="figure">
+        <img src="fig.2.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 2</strong> — Comparison of cavity sizes among α-, β-, and γ-CD. As the number of glucose units increases, the cavity becomes larger, allowing larger guest molecules to be included. Large molecules such as fatty acids are only partially included.</div>
+      </div>
+      <div class="figure">
+        <img src="fig.3.png" style="width:100%;height:220px;object-fit:contain;background:#f0f3f8;">
+        <div class="figure-caption"><strong>Fig. 3</strong> — Example determination of binding constants (K) for inclusion complexes by NMR spectroscopy. Changes in chemical shift were used to quantitatively evaluate the position of the guest molecule within the cavity and the stability of the complex. This basic data underlies the design of our current food-application research.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span></span>Related Publications</h2>
+    <p>Yoshikiyo et al. (2015) Beilstein Journal of Organic Chemistry — <a href="http://dx.doi.org/10.3762/bjoc.11.168" style="color:var(--accent)">doi:10.3762/bjoc.11.168</a></p>
+    <p>Yoshikiyo et al. (2012) Bulletin of the Chemical Society of Japan — <a href="http://dx.doi.org/10.1246/bcsj.20120140" style="color:var(--accent)">doi:10.1246/bcsj.20120140</a></p>
+    <p>Akita, Yoshikiyo &amp; Yamamoto (2014) Journal of Molecular Structure — <a href="http://dx.doi.org/10.1016/j.molstruc.2014.05.051" style="color:var(--accent)">doi:10.1016/j.molstruc.2014.05.051</a></p>
+  </div>
+
+  <a href="index_en.html#research" class="back-link">← Back to Research</a>
+</div>
+
+<footer>© 2025 Keisuke Yoshikiyo — Yoshikiyo Research Group, Shimane University</footer>
+</body>
+</html>
