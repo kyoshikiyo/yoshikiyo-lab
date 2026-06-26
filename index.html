@@ -1016,7 +1016,8 @@ footer {
       <li><a href="#publications">著作物 / Publications</a></li>
       <li><a href="#courses">担当科目 / Courses</a></li>
       <li><a href="#contact">連絡先 / Contact</a></li>
-      <li><a href="students.html" class="nav-students">学生の皆さんへ</a></li>
+      <li><a href="explainer.html" class="nav-students">高校生の方へ</a></li>
+      <li><a href="students.html" class="nav-students" style="margin-left:4px;">配属を考えている方へ</a></li>
       <li><a href="index_en.html" style="font-size:0.78rem;letter-spacing:0.08em;color:rgba(255,255,255,0.45);border:1px solid rgba(255,255,255,0.15);padding:3px 10px;transition:color 0.2s,border-color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.8)';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.color='rgba(255,255,255,0.45)';this.style.borderColor='rgba(255,255,255,0.15)'">EN</a></li>
     </ul>
   </div>
@@ -1105,55 +1106,6 @@ footer {
   </div>
 </section>
 
-<!-- EXPLAINER: 高校生向け解説ページ -->
-<section id="explainer" style="padding:64px 24px; background:#F0F7F4;">
-  <div style="max-width:760px; margin:0 auto; text-align:center;">
-    <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:.12em;
-      text-transform:uppercase; color:#1D9E75; background:#C8EDE1;
-      padding:4px 14px; border-radius:20px; margin-bottom:20px;">
-      高校生向け解説
-    </span>
-    <h2 style="font-size:clamp(22px,4vw,32px); font-weight:700;
-      letter-spacing:-0.02em; margin-bottom:14px; color:#1a1a18;">
-      えごま油と分子カプセル、<br>のぞいてみよう
-    </h2>
-    <p style="font-size:16px; color:#6b6b68; max-width:520px;
-      margin:0 auto 32px; line-height:1.8;">
-      「オメガ3って何？」「分子カプセルってどういうこと？」——<br>
-      専門用語ゼロから、ステップ式・3Dモデルつきで解説しています。
-    </p>
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:32px;">
-      <div style="background:#fff; border:1px solid #c8ede1; border-radius:12px;
-        padding:16px 20px; text-align:left; width:200px;">
-        <div style="font-size:22px; margin-bottom:8px;">🌿</div>
-        <div style="font-size:14px; font-weight:500; color:#1a1a18; margin-bottom:4px;">えごま油って何からできている？</div>
-        <div style="font-size:12px; color:#6b6b68;">脂肪酸・オメガ3をステップ式で解説</div>
-      </div>
-      <div style="background:#fff; border:1px solid #c8ede1; border-radius:12px;
-        padding:16px 20px; text-align:left; width:200px;">
-        <div style="font-size:22px; margin-bottom:8px;">💊</div>
-        <div style="font-size:14px; font-weight:500; color:#1a1a18; margin-bottom:4px;">「分子カプセル」ってどういうこと？</div>
-        <div style="font-size:12px; color:#6b6b68;">包接の仕組みをビジュアルで解説</div>
-      </div>
-      <div style="background:#fff; border:1px solid #c8ede1; border-radius:12px;
-        padding:16px 20px; text-align:left; width:200px;">
-        <div style="font-size:22px; margin-bottom:8px;">🔬</div>
-        <div style="font-size:14px; font-weight:500; color:#1a1a18; margin-bottom:4px;">鍵となる分子をのぞいてみよう</div>
-        <div style="font-size:12px; color:#6b6b68;">実際の分子データを3Dで回転・比較</div>
-      </div>
-    </div>
-    <a href="./explainer.html"
-      style="display:inline-block; background:#1D9E75; color:#fff;
-        text-decoration:none; padding:14px 36px; border-radius:28px;
-        font-size:15px; font-weight:500; letter-spacing:0.02em;
-        transition:opacity .15s;"
-      onmouseover="this.style.opacity='.85'"
-      onmouseout="this.style.opacity='1'">
-      解説ページを見る →
-    </a>
-  </div>
-</section>
-
 <!-- RESEARCH -->
 <section id="research">
   <div class="container">
@@ -1239,6 +1191,20 @@ footer {
         <div class="card-num">THEME 04</div>
         <h3>エゴマ油の摂取による各種臓器のオメガ3系脂肪酸組成比への影響<em>Effect on Organ Fatty Acid Composition</em></h3>
         <p>エゴマ油をγ-シクロデキストリン（γ-CD）で包接して摂取することで、血液中だけでなくさまざまな臓器の脂肪酸組成に影響を与えることが明らかになりました。<br><a href="research4.html" style="font-size:0.82rem;color:var(--gold);text-decoration:none;font-weight:500;">詳細 →</a></p>
+      </div>
+      <div class="research-card fade-in" id="theme05">
+        <div class="card-num">インタラクティブ解説</div>
+        <div style="position:relative;display:flex;justify-content:center;margin-bottom:1rem;">
+          <canvas id="cdCanvas" width="240" height="190"
+            style="display:block;border-radius:6px;background:linear-gradient(180deg,#1a2e22 0%,#0d1a13 100%);box-shadow:0 4px 16px rgba(0,0,0,0.22);cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;"
+            onmouseover="this.style.transform='scale(1.03)';this.style.boxShadow='0 8px 28px rgba(0,0,0,0.32)'"
+            onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,0,0,0.22)'"
+            aria-label="γ-シクロデキストリン分子の3Dモデル（回転中）"></canvas>
+          <span style="position:absolute;bottom:8px;right:8px;background:rgba(184,150,90,0.9);color:#fff;font-size:0.68rem;font-weight:700;padding:3px 9px;border-radius:12px;pointer-events:none;letter-spacing:0.04em;">🔬 分子を見てみよう</span>
+        </div>
+        <h3>えごま油と分子カプセル、のぞいてみよう<em>Explore the Molecule</em></h3>
+        <p>これが研究の主役・γ-シクロデキストリン（γ-CD）の実際の立体構造です。「オメガ3って何？」——専門用語ゼロからインタラクティブに解説します。<br>
+        <a href="explainer.html" style="display:inline-block;margin-top:0.75rem;padding:0.45rem 1rem;background:var(--gold);color:var(--navy-dark);border-radius:3px;font-size:0.82rem;font-weight:500;text-decoration:none;letter-spacing:0.04em;transition:background 0.2s;" onmouseover="this.style.background='var(--gold-light)'" onmouseout="this.style.background='var(--gold)'">▶ インタラクティブ解説を見る →</a></p>
       </div>
     </div>
   </div>
@@ -1829,6 +1795,40 @@ window.addEventListener('scroll', () => {
     current = (current + 1) % imgs.length;
     imgs[current].classList.add('active');
   }, 3500);
+})();
+</script>
+<script>
+(function(){
+  const ATOMS=[[6.41,-0.18,-2.61,1],[7.11,-0.96,-1.48,1],[6.3,-0.78,-0.2,1],[6.93,-1.52,0.87,0],[6.19,0.72,0.16,1],[5.67,1.5,-1.07,1],[5.74,3.02,-0.86,1],[4.78,3.52,0.06,0],[6.44,1.21,-2.25,0],[7.31,-2.36,-1.72,0],[5.34,1.17,-5.16,0],[5.06,-0.03,-5.87,1],[1.38,0.46,-6.16,0],[0.33,-0.19,-6.85,1],[4.19,-1.02,-5.08,1],[-0.34,-1.32,-6.03,1],[3.82,-2.06,-6.0,0],[-1.58,-1.62,-6.68,0],[5.06,-0.58,-2.83,0],[4.87,-1.6,-3.82,1],[-2.35,-2.6,-5.99,1],[2.88,-2.98,-5.45,1],[1.69,-2.29,-5.07,0],[0.56,-2.57,-5.92,1],[3.94,-2.67,-3.2,1],[3.5,-3.69,-4.25,1],[-1.56,-3.93,-6.05,1],[-0.23,-3.74,-5.31,1],[4.61,-3.36,-2.14,0],[-2.23,-5.08,-5.52,0],[2.63,-4.64,-3.61,0],[0.53,-4.96,-5.38,0],[-4.25,-0.18,-6.07,0],[-5.29,-0.82,-5.36,1],[-2.6,-2.16,-4.65,0],[-4.84,-1.38,-4.0,1],[-3.85,-2.57,-4.09,1],[-6.04,-1.75,-3.3,0],[-3.58,-3.08,-2.66,1],[-2.8,-4.29,-2.71,0],[-5.8,-2.16,-1.95,1],[-5.23,-1.08,-1.2,0],[-4.88,-3.39,-1.92,1],[-4.56,-3.83,-0.59,0],[5.09,4.11,3.87,1],[3.96,4.96,3.89,0],[-0.58,5.08,4.57,1],[-1.58,4.91,3.56,0],[6.05,2.06,3.14,0],[4.78,2.69,3.37,1],[-4.98,1.6,-2.34,0],[-4.99,3.94,1.81,0],[-4.94,4.07,3.22,1],[-5.97,1.86,-1.35,1],[1.44,4.18,5.45,0],[0.19,3.79,4.87,1],[5.93,0.77,2.53,1],[5.29,0.88,1.26,0],[3.91,1.85,4.34,1],[-3.82,3.38,5.22,0],[-4.16,2.94,3.9,1],[2.58,2.4,4.47,0],[2.32,3.07,5.7,1],[-5.81,1.02,-0.08,1],[5.14,-0.17,3.45,1],[-0.59,2.85,5.82,1],[-6.65,1.6,0.93,0],[-1.75,2.3,5.18,0],[-2.96,2.47,5.91,1],[3.77,0.43,3.77,1],[-4.94,1.6,3.95,1],[-5.15,1.05,2.64,0],[1.65,2.18,6.77,1],[-6.16,-0.47,-0.3,1],[-6.51,0.98,2.21,1],[4.95,-1.48,2.9,0],[0.31,1.67,6.23,1],[3.11,-0.43,4.71,0],[-3.69,1.13,6.1,1],[-4.12,0.57,4.74,1],[2.42,1.06,7.2,0],[-6.12,-1.21,1.06,1],[-6.97,-0.48,2.1,1],[-0.35,0.89,7.24,0],[-2.93,0.12,6.78,0],[-4.91,-0.62,4.94,0],[-6.59,-2.57,0.92,0],[-6.94,-1.22,3.33,0]];
+  const BONDS=[[0,8],[0,1],[2,4],[2,1],[2,3],[5,8],[5,6],[5,4],[7,6],[9,1],[10,11],[12,13],[14,16],[14,11],[14,19],[15,17],[15,13],[15,23],[18,19],[20,17],[20,26],[21,16],[21,25],[21,22],[22,23],[24,19],[24,25],[24,28],[27,23],[27,26],[27,31],[29,26],[30,25],[18,0],[32,33],[34,36],[35,37],[35,33],[35,36],[38,36],[38,42],[38,39],[40,37],[40,42],[40,41],[43,42],[34,20],[45,44],[47,46],[49,48],[49,44],[49,58],[50,53],[51,52],[55,54],[55,46],[55,65],[56,48],[56,64],[56,57],[60,59],[60,52],[60,70],[61,58],[61,62],[62,54],[62,72],[63,66],[63,53],[63,73],[67,65],[68,59],[68,78],[68,67],[69,58],[69,64],[69,77],[71,70],[71,74],[74,66],[74,82],[75,64],[76,65],[76,72],[76,83],[79,70],[79,78],[79,85],[80,72],[81,73],[81,82],[81,86],[84,78],[87,82],[4,57],[41,73]];
+  const canvas=document.getElementById('cdCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,CX=W/2,CY=H/2,SCALE=12;
+  let angleY=0,angleX=0.28,hovered=false;
+  canvas.addEventListener('mouseenter',()=>hovered=true);
+  canvas.addEventListener('mouseleave',()=>hovered=false);
+  function rotY(x,y,z,a){return[x*Math.cos(a)+z*Math.sin(a),y,-x*Math.sin(a)+z*Math.cos(a)];}
+  function rotX(x,y,z,a){return[x,y*Math.cos(a)-z*Math.sin(a),y*Math.sin(a)+z*Math.cos(a)];}
+  function project(x,y,z){const f=55;return[CX+x*SCALE*f/(f+z),CY-y*SCALE*f/(f+z),z];}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const proj=ATOMS.map(([ax,ay,az])=>{let[x,y,z]=rotX(ax,ay,az,angleX);[x,y,z]=rotY(x,y,z,angleY);return project(x,y,z);});
+    [...BONDS].sort((a,b)=>(proj[a[0]][2]+proj[a[1]][2])-(proj[b[0]][2]+proj[b[1]][2])).forEach(([i,j])=>{
+      const d=Math.max(0,Math.min(1,((proj[i][2]+proj[j][2])/2+12)/24));
+      ctx.beginPath();ctx.moveTo(proj[i][0],proj[i][1]);ctx.lineTo(proj[j][0],proj[j][1]);
+      ctx.strokeStyle=`rgba(120,170,135,${0.2+d*0.6})`;ctx.lineWidth=0.8+d*0.7;ctx.stroke();
+    });
+    [...ATOMS.keys()].sort((a,b)=>proj[a][2]-proj[b][2]).forEach(idx=>{
+      const[px,py,pz]=proj[idx],isC=ATOMS[idx][3]===1,d=Math.max(0,Math.min(1,(pz+12)/24)),r=(isC?3.0:2.3)*(0.55+d*0.7),al=0.35+d*0.65;
+      const g=ctx.createRadialGradient(px-r*.3,py-r*.3,0,px,py,r);
+      if(isC){g.addColorStop(0,`rgba(110,195,130,${al})`);g.addColorStop(1,`rgba(35,90,50,${al})`);}
+      else{g.addColorStop(0,`rgba(240,130,85,${al})`);g.addColorStop(1,`rgba(160,55,25,${al})`);}
+      ctx.beginPath();ctx.arc(px,py,r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    });
+  }
+  let last=0;
+  function animate(ts){last=ts;angleY+=hovered?0.012:0.005;draw();requestAnimationFrame(animate);}
+  requestAnimationFrame(ts=>{last=ts;animate(ts);});
 })();
 </script>
 </body>
